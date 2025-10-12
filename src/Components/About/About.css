@@ -1,0 +1,18 @@
+.About {
+  padding-top: 5%;
+  display: flex;
+  gap: 30px;
+}
+
+.About img {
+  width: 400px;
+  height: 400px;
+}
+
+.experience {
+  /* change this to type and see importance of div */
+  width: 100%;
+  justify-content: space-around;
+  display: flex;
+  margin-bottom: 80px;
+}

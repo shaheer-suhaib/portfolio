@@ -1,0 +1,20 @@
+.hero-section {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.hero-section img {
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* apply gradient on span*/
+
+.hero-connect {
+  display: flex;
+  gap: 45px;
+}
