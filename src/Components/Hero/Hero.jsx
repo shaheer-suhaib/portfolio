@@ -2,7 +2,7 @@ import React from "react";
 import "./Hero.css";
 const Hero = () => {
   return (
-    <div className="hero-section">
+    <div id="home" className="hero-section">
       <div className="img">
         <img src=".\images\face.png" alt="" />
       </div>

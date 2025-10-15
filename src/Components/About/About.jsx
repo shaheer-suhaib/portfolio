@@ -2,7 +2,7 @@ import React from "react";
 import "./About.css";
 const About = () => {
   return (
-    <div className="About">
+    <div id="about" className="About">
       <div className="img">
         <img src=".\images\face.png" alt="" />{" "}
       </div>

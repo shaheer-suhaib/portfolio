@@ -17,3 +17,12 @@
   font-size: 22px;
   cursor: pointer;
 }
+
+.nav-menue p {
+  cursor: pointer;
+}
+
+.AnchorLink {
+  text-decoration: none;
+  color: white;
+}
