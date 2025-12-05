@@ -6,7 +6,7 @@ import "./About.css";
 const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
+
   const experienceCount = useCountUp(isInView ? 10 : 0, 2000);
   const projectsCount = useCountUp(isInView ? 90 : 0, 2000);
 
