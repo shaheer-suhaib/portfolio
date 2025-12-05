@@ -1,6 +1,21 @@
 .navBar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 30px 80px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.navBar.scrolled {
+  padding: 20px 80px;
+  background: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .nav-menue {
@@ -10,19 +25,51 @@
   list-style: none;
 }
 
-.nav-connect {
-  padding: 20px 40px;
-  border-radius: 50px;
-  background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
-  font-size: 22px;
-  cursor: pointer;
+.nav-menue li {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.nav-menue li:hover {
+  transform: translateY(-2px);
 }
 
 .nav-menue p {
   cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-menue p:hover {
+  color: #b923e1;
+}
+
+.nav-connect {
+  padding: 18px 40px;
+  border-radius: 50px;
+  background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(185, 35, 225, 0.3);
+}
+
+.nav-connect:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(185, 35, 225, 0.5);
+  background: linear-gradient(267deg, #e88a3a 0.36%, #c944f0 100%);
 }
 
 .AnchorLink {
   text-decoration: none;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }

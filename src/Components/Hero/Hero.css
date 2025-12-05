@@ -2,7 +2,41 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 30px;
+  gap: 40px;
+  padding: 100px 80px;
+  min-height: 90vh;
+  justify-content: center;
+}
+
+.hero-section .img {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.hero-section .img::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
+  opacity: 0.3;
+  filter: blur(20px);
+  z-index: -1;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
 }
 
 .hero-section img {
@@ -10,11 +44,79 @@
   height: 550px;
   border-radius: 50%;
   object-fit: cover;
+  border: 4px solid rgba(185, 35, 225, 0.3);
+  transition: transform 0.3s ease;
 }
 
-/* apply gradient on span*/
+.hero-section img:hover {
+  transform: scale(1.02);
+}
+
+.hero-section h1 {
+  font-size: 80px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+  max-width: 1200px;
+  margin: 20px 0;
+}
+
+.hero-section h1 span {
+  background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.cursor-blink {
+  display: inline-block;
+  margin-left: 2px;
+  color: rgba(185, 35, 225, 0.8);
+}
 
 .hero-connect {
   display: flex;
   gap: 45px;
+  margin-top: 30px;
+  align-items: center;
+}
+
+.connect-me {
+  padding: 20px 50px;
+  border-radius: 50px;
+  background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
+  font-size: 22px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(185, 35, 225, 0.3);
+  border: none;
+  color: white;
+}
+
+.connect-me:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(185, 35, 225, 0.5);
+  background: linear-gradient(267deg, #e88a3a 0.36%, #c944f0 100%);
+}
+
+.resume {
+  padding: 20px 50px;
+  border-radius: 50px;
+  border: 2px solid white;
+  font-size: 22px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  color: white;
+}
+
+.resume:hover {
+  background: white;
+  color: black;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
 }

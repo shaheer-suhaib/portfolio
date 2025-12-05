@@ -1,9 +1,65 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: black;
   color: white;
-font-family: "outfit";
+  font-family: "outfit", sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+@media (min-width: 769px) {
+  body {
+    cursor: none; /* Hide default cursor when custom cursor is active */
+  }
+}
+
+/* Smooth scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #da7c25 0%, #b923e1 100%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #e88a3a 0%, #c944f0 100%);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(185, 35, 225, 0.3);
+  color: white;
+}
+
+::-moz-selection {
+  background: rgba(185, 35, 225, 0.3);
+  color: white;
+}
+
+/* Performance optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent layout shift */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
