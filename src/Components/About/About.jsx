@@ -55,7 +55,7 @@ const About = () => {
     >
       <motion.div className="img" variants={itemVariants}>
         <motion.img
-          src=".\images\face.png"
+          src=".\images\side_img.png"
           alt=""
           whileHover={{ scale: 1.05, rotate: -2 }}
           transition={{ type: "spring", stiffness: 300 }}

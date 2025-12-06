@@ -1,9 +1,11 @@
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import "./MyWork.css";
 import work_data from "../../assets/mywork_data.js";
 
 const MyWork = () => {
+  const navigate = useNavigate();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -63,6 +65,7 @@ const MyWork = () => {
                 transition: { duration: 0.3 }
               }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate(`/projects/${work.w_no}`)}
             />
           );
         })}
@@ -73,6 +76,7 @@ const MyWork = () => {
           transition={{ delay: 0.8, duration: 0.5 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => navigate("/projects")}
         >
           <p>show more</p>
           <motion.span
