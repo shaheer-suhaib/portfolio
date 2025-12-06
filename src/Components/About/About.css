@@ -1,10 +1,31 @@
 .About {
   padding: 100px 80px;
   display: flex;
-  gap: 60px;
+  flex-direction: column;
+  gap: 80px;
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
+  position: relative;
+}
+
+.about-title {
+  padding: 0px 30px;
+  font-size: 80px;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  width: 100%;
+}
+
+.about-content-wrapper {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  width: 100%;
 }
 
 .About .img {
@@ -18,10 +39,13 @@
   object-fit: cover;
   border: 3px solid rgba(185, 35, 225, 0.3);
   transition: transform 0.3s ease;
+  box-shadow: 0 10px 40px rgba(185, 35, 225, 0.2);
 }
 
 .About img:hover {
   transform: scale(1.05);
+  box-shadow: 0 15px 50px rgba(185, 35, 225, 0.4);
+  border-color: rgba(185, 35, 225, 0.6);
 }
 
 .about-right {
@@ -57,10 +81,10 @@
 }
 
 .skill-name:hover {
-  background: rgba(185, 35, 225, 0.2);
-  border-color: rgba(185, 35, 225, 0.6);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(185, 35, 225, 0.2);
+  background: rgba(185, 35, 225, 0.25);
+  border-color: rgba(185, 35, 225, 0.7);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(185, 35, 225, 0.3);
 }
 
 .experience {
@@ -103,4 +127,31 @@
   border-left: 1px solid rgba(255, 255, 255, 0.2);
   height: 80px;
   margin: 0 40px;
+}
+
+@media (max-width: 1200px) {
+  .about-content-wrapper {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .About img {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .About {
+    padding: 60px 30px;
+    gap: 50px;
+  }
+
+  .about-title {
+    font-size: 48px;
+  }
+
+  .about-content-wrapper {
+    flex-direction: column;
+  }
 }

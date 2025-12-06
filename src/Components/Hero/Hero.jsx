@@ -54,8 +54,8 @@ const Hero = () => {
     >
       <motion.div className="img" variants={itemVariants}>
         <motion.img
-          src=".\images\face.png"
-          alt=""
+          src="/images/face.png"
+          alt="Profile"
           whileHover={{ scale: 1.05, rotate: 2 }}
           transition={{ type: "spring", stiffness: 300 }}
         />

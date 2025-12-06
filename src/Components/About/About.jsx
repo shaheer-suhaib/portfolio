@@ -53,15 +53,24 @@ const About = () => {
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
     >
-      <motion.div className="img" variants={itemVariants}>
-        <motion.img
-          src=".\images\side_img.png"
-          alt=""
-          whileHover={{ scale: 1.05, rotate: -2 }}
-          transition={{ type: "spring", stiffness: 300 }}
-        />
+      <motion.div
+        className="about-title"
+        initial={{ opacity: 0, y: -30 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
+        transition={{ duration: 0.6 }}
+      >
+        About me
       </motion.div>
-      <div className="about-right">
+      <div className="about-content-wrapper">
+        <motion.div className="img" variants={itemVariants}>
+          <motion.img
+            src="/images/side_img.png"
+            alt="About me"
+            whileHover={{ scale: 1.05, rotate: -2 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          />
+        </motion.div>
+        <div className="about-right">
         <motion.div className="details" variants={itemVariants}>
           <p>
             I'm a software engineer based in pakistan and graduated from Nust
@@ -102,6 +111,7 @@ const About = () => {
             <p>Projects Completed</p>
           </motion.div>
         </motion.div>
+      </div>
       </div>
     </motion.div>
   );
