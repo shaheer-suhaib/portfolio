@@ -67,6 +67,39 @@
   background: linear-gradient(267deg, #e88a3a 0.36%, #c944f0 100%);
 }
 
+.nav-resume {
+  padding: 18px 40px;
+  border-radius: 50px;
+  background: transparent;
+  border: 2px solid #b923e1;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+  margin-left: 20px;
+}
+
+.nav-resume:hover {
+  background: rgba(185, 35, 225, 0.1);
+  border-color: #c944f0;
+  transform: translateY(-2px);
+}
+
+.download-message {
+  position: fixed;
+  top: 100px;
+  right: 50px;
+  background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  z-index: 10000;
+  box-shadow: 0 4px 20px rgba(185, 35, 225, 0.5);
+}
+
 .AnchorLink {
   text-decoration: none;
   color: white;
@@ -95,5 +128,18 @@
   .nav-connect {
     padding: 15px 30px;
     font-size: 16px;
+  }
+
+  .nav-resume {
+    padding: 15px 30px;
+    font-size: 16px;
+    margin-left: 10px;
+  }
+
+  .download-message {
+    top: 80px;
+    right: 20px;
+    padding: 12px 24px;
+    font-size: 14px;
   }
 }

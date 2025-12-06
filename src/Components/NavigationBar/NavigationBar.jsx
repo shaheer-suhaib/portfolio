@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./NavigationBar.css";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import underline from "../../assets/nav_underline.svg";
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import resume from "../../assets/shaheer-resume.pdf";
 
 const NavigationBar = () => {
   const [menue, setMenue] = useState("home");
   const [scrolled, setScrolled] = useState(false);
+  const [showDownloadMessage, setShowDownloadMessage] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +17,20 @@ const NavigationBar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleResumeDownload = () => {
+    const link = document.createElement("a");
+    link.href = resume;
+    link.download = "shaheer-resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    setShowDownloadMessage(true);
+    setTimeout(() => {
+      setShowDownloadMessage(false);
+    }, 3000);
+  };
 
   const navItems = [
     { id: "home", label: "Home", href: "#home" },
@@ -64,6 +80,27 @@ const NavigationBar = () => {
       >
         Connect With Me
       </motion.div>
+      <motion.button
+        className="nav-resume"
+        onClick={handleResumeDownload}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        Resume
+      </motion.button>
+      <AnimatePresence>
+        {showDownloadMessage && (
+          <motion.div
+            className="download-message"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            Resume Downloaded!
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };

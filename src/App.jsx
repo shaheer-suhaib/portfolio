@@ -13,6 +13,8 @@ import CustomCursor from "./Components/CustomCursor/CustomCursor";
 import Projects from "./Components/Projects/Projects";
 import ProjectsDetail from "./Components/ProjectsDetail/ProjectsDetail";
 import { AnimatePresence } from "framer-motion";
+import Experience from "./Components/Skill&Experience/experience";
+
 
 function HomePage() {
   return (
@@ -24,6 +26,7 @@ function HomePage() {
       <Hero />
       <About />
       <MyWork />
+      <Experience />
       <Contact />
       <Footer />
     </>

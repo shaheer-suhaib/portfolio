@@ -1,0 +1,43 @@
+.moving-border-container {
+  position: relative;
+  border-radius: 1.75rem;
+  padding: 2px;
+  overflow: hidden;
+  background: rgb(4, 7, 29);
+}
+
+.moving-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.75rem;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 290deg,
+    white 300deg,
+    white 330deg,
+    transparent 340deg,
+    transparent 360deg
+  );
+  animation: rotate linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.moving-border-content {
+  position: relative;
+  background: rgb(4, 7, 29);
+  border-radius: calc(1.75rem * 0.96);
+  padding: 1.5rem;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+
