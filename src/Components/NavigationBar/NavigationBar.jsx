@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./NavigationBar.css";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
 import underline from "../../assets/nav_underline.svg";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import resume from "../../assets/shaheer-resume.pdf";
 
 const NavigationBar = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [menue, setMenue] = useState("home");
   const [scrolled, setScrolled] = useState(false);
   const [showDownloadMessage, setShowDownloadMessage] = useState(false);
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +21,40 @@ const NavigationBar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Update active menu based on current route
+  useEffect(() => {
+    if (location.pathname === "/projects" || location.pathname.startsWith("/projects/") || location.pathname === "/engineered-projects") {
+      setMenue("portfolio");
+    } else if (location.pathname === "/") {
+      if (location.hash) {
+        const hash = location.hash.substring(1);
+        if (hash === "home") setMenue("home");
+        else if (hash === "about") setMenue("about");
+        else if (hash === "work") setMenue("portfolio");
+        else if (hash === "contact") setMenue("contact");
+      } else {
+        setMenue("home");
+      }
+    }
+  }, [location.pathname, location.hash]);
+
+  // Handle scrolling to section after navigation
+  useEffect(() => {
+    if (location.hash && isHomePage) {
+      const hash = location.hash.substring(1);
+      setTimeout(() => {
+        const element = document.getElementById(hash);
+        if (element) {
+          const offset = hash === "about" ? 50 : 0;
+          window.scrollTo({
+            top: element.offsetTop - offset,
+            behavior: "smooth",
+          });
+        }
+      }, 100);
+    }
+  }, [location.hash, isHomePage]);
 
   const handleResumeDownload = () => {
     const link = document.createElement("a");
@@ -30,6 +68,25 @@ const NavigationBar = () => {
     setTimeout(() => {
       setShowDownloadMessage(false);
     }, 3000);
+  };
+
+  const handleNavClick = (item) => {
+    setMenue(item.id);
+    
+    if (item.id === "portfolio") {
+      // Portfolio should go to /projects page when not on home
+      navigate("/projects");
+      return;
+    }
+
+    if (item.id === "home") {
+      // Home should navigate to home page
+      navigate("/");
+      return;
+    }
+
+    // For other items (about, contact), navigate to home with hash
+    navigate(`/${item.href}`);
   };
 
   const navItems = [
@@ -53,13 +110,34 @@ const NavigationBar = () => {
             whileHover={{ y: -2 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
-            <AnchorLink
-              className="AnchorLink"
-              href={item.href}
-              offset={item.offset || 0}
-            >
-              <p onClick={() => setMenue(item.id)}>{item.label}</p>
-            </AnchorLink>
+            {isHomePage ? (
+              item.id === "portfolio" ? (
+                <div className="AnchorLink" onClick={() => {
+                  setMenue(item.id);
+                  const element = document.getElementById("work");
+                  if (element) {
+                    window.scrollTo({
+                      top: element.offsetTop,
+                      behavior: "smooth",
+                    });
+                  }
+                }}>
+                  <p>{item.label}</p>
+                </div>
+              ) : (
+                <AnchorLink
+                  className="AnchorLink"
+                  href={item.href}
+                  offset={item.offset || 0}
+                >
+                  <p onClick={() => setMenue(item.id)}>{item.label}</p>
+                </AnchorLink>
+              )
+            ) : (
+              <div className="AnchorLink" onClick={() => handleNavClick(item)}>
+                <p>{item.label}</p>
+              </div>
+            )}
             {menue === item.id && (
               <motion.img
                 src={underline}

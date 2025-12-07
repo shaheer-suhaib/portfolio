@@ -140,6 +140,41 @@ const Projects = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Engineering Projects Section */}
+        <motion.div
+          className="engineering-projects-section"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <motion.div
+            className="engineering-projects-card"
+            whileHover={{ scale: 1.02, y: -5 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="engineering-projects-content">
+              <h3 className="engineering-projects-title">
+                Complex Engineering Projects
+              </h3>
+              <p className="engineering-projects-description">
+                Beyond web and software development, I have worked on various complex engineering projects 
+                involving mechanical design, systems engineering, and innovative problem-solving. 
+                Explore my engineering portfolio to see these projects.
+              </p>
+              <motion.button
+                className="engineering-projects-button"
+                onClick={() => navigate("/engineered-projects")}
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>View Engineering Projects</span>
+                <ExternalLink size={20} />
+              </motion.button>
+            </div>
+          </motion.div>
+        </motion.div>
       </motion.div>
       </motion.div>
       <Footer />

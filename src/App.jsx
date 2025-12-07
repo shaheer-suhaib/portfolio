@@ -12,6 +12,7 @@ import ParticleBackground from "./Components/ParticleBackground/ParticleBackgrou
 import CustomCursor from "./Components/CustomCursor/CustomCursor";
 import Projects from "./Components/Projects/Projects";
 import ProjectsDetail from "./Components/ProjectsDetail/ProjectsDetail";
+import EngineeredProjects from "./Components/EngineeredProjects/EngineeredProjects";
 import { AnimatePresence } from "framer-motion";
 import Experience from "./Components/Skill&Experience/experience";
 
@@ -51,6 +52,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/projects/:id" element={<ProjectsDetail />} />
+              <Route path="/engineered-projects" element={<EngineeredProjects />} />
             </Routes>
           </AnimatePresence>
         </>
