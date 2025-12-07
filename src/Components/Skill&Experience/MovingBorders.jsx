@@ -3,7 +3,7 @@ import "./MovingBorders.css";
 
 const MovingBorders = ({
   children,
-  duration = 1000000000,
+  duration = 10000,
   borderRadius = "1.75rem",
   className = "",
   style = {},
