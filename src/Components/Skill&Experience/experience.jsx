@@ -95,39 +95,56 @@ const experience = () => {
         </div>
         <div className="experience-container">
           <h2 className="experience-title">EXPERIENCE</h2>
-          <MovingBorders
-            duration={Math.floor(Math.random() * 10000) + 10000}
-            borderRadius="1.75rem"
-            style={{
-              background: "rgb(4,7,29)",
-              backgroundColor: "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-              borderRadius: `calc(1.75rem* 0.96)`,
-            }}
-            className="experience-card"
-          >
-            <h2 className="title"> Generative AI Intern </h2>
-            <p className="description">
-            Developed a meeting assistant using CrewAI to extract action items and tasks from meeting transcripts | Integrated Slack API to automatically push extracted tasks and updates to team channels.
-            </p>
-          </MovingBorders>
-          <MovingBorders
-            duration={Math.floor(Math.random() * 10000) + 10000}
-            borderRadius="1.75rem"
-            style={{
-              background: "rgb(4,7,29)",
-              backgroundColor: "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-              borderRadius: `calc(1.75rem* 0.96)`,
-            }}
-            className="experience-card"
-          >
-            <h2 className="title">
-              Research Intern - Research and Analysis (Portable Fetal Ultrasound
-              Device)
-            </h2>
-            <p className="description">
-            Developed a meeting assistant using CrewAI to extract action items and tasks from meeting transcripts | Integrated Slack API to automatically push extracted tasks and updates to team channels.
-            </p>
-          </MovingBorders>
+          <div className="experience-item">
+            <div className="experience-date">2022</div>
+            <MovingBorders
+              duration={Math.floor(Math.random() * 10000) + 10000}
+              borderRadius="1.75rem"
+              style={{
+                background: "rgb(4,7,29)",
+                backgroundColor: "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+                borderRadius: `calc(1.75rem* 0.96)`,
+              }}
+              className="experience-card"
+            >
+              <div className="title-container">
+                <h2 className="title">Generative AI Intern</h2>
+                <div className="company-logo">
+                  <img src="https://via.placeholder.com/40x40/9333ea/ffffff?text=A" alt="Company Logo" />
+                </div>
+              </div>
+              <div className="company-name">Apple</div>
+              <p className="description">
+                Developed a meeting assistant using CrewAI to extract action items and tasks from meeting transcripts | Integrated Slack API to automatically push extracted tasks and updates to team channels.
+              </p>
+            </MovingBorders>
+          </div>
+          <div className="experience-item">
+            <div className="experience-date">2022</div>
+            <MovingBorders
+              duration={Math.floor(Math.random() * 10000) + 10000}
+              borderRadius="1.75rem"
+              style={{
+                background: "rgb(4,7,29)",
+                backgroundColor: "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+                borderRadius: `calc(1.75rem* 0.96)`,
+              }}
+              className="experience-card"
+            >
+              <div className="title-container">
+                <h2 className="title">
+                  Research Intern - Research and Analysis (Portable Fetal Ultrasound Device)
+                </h2>
+                <div className="company-logo">
+                  <img src="https://via.placeholder.com/40x40/ec4899/ffffff?text=S" alt="Company Logo" />
+                </div>
+              </div>
+              <div className="company-name">Samsung</div>
+              <p className="description">
+                Developed a meeting assistant using CrewAI to extract action items and tasks from meeting transcripts | Integrated Slack API to automatically push extracted tasks and updates to team channels.
+              </p>
+            </MovingBorders>
+          </div>
         </div>
       </div>
     </div>
