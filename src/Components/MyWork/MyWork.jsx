@@ -53,11 +53,9 @@ const MyWork = () => {
       <div className="work-container">
         {work_data.map((work, index) => {
           return (
-            <motion.img
-              className="work-img"
+            <motion.div
               key={index}
-              src={work.w_img}
-              alt={work.w_name}
+              className="work-item"
               variants={itemVariants}
               whileHover={{ 
                 scale: 1.05, 
@@ -66,7 +64,19 @@ const MyWork = () => {
               }}
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate(`/projects/${work.w_no}`)}
-            />
+            >
+              <img
+                className="work-img"
+                src={work.w_img}
+                alt={work.w_name}
+              />
+              <div className="work-overlay">
+                <div className="work-overlay-content">
+                  <h3 className="work-overlay-title">{work.w_name}</h3>
+                  <p className="work-overlay-description">{work.description}</p>
+                </div>
+              </div>
+            </motion.div>
           );
         })}
         <motion.div
