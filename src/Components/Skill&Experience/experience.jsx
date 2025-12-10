@@ -1,6 +1,9 @@
 import React from "react";
 import "./experience.css";
 import MovingBorders from "./MovingBorders";
+import SkillIcon from "../SkillIcons/SkillIcon";
+import psychiatraiLogo from "../../assets/psychiatrai_logo.jfif";
+import careLogo from "../../assets/care.jfif";
 
 const experience = () => {
   return (
@@ -13,15 +16,15 @@ const experience = () => {
               <h3 className="category-title">Languages:</h3>
               <div className="skill-items">
                 <span className="skill-item">
-                  <span className="skill-icon">🐍</span>
+                  <SkillIcon name="python" className="skill-icon" />
                   <span>Python</span>
                 </span>
                 <span className="skill-item">
-                  <span className="skill-icon">☕</span>
+                  <SkillIcon name="java" className="skill-icon" />
                   <span>Java</span>
                 </span>
                 <span className="skill-item">
-                  <span className="skill-icon">⚙️</span>
+                  <SkillIcon name="c++" className="skill-icon" />
                   <span>C++</span>
                 </span>
               </div>
@@ -31,23 +34,23 @@ const experience = () => {
               <h3 className="category-title">Frameworks:</h3>
               <div className="skill-items">
                 <span className="skill-item">
-                  <span className="skill-icon">🔗</span>
+                  <SkillIcon name="langchain" className="skill-icon" />
                   <span>LangChain</span>
                 </span>
                 <span className="skill-item">
-                  <span className="skill-icon">📊</span>
+                  <SkillIcon name="langgraph" className="skill-icon" />
                   <span>LangGraph</span>
                 </span>
                 <span className="skill-item">
-                  <span className="skill-icon">🧠</span>
+                  <SkillIcon name="tensorflow" className="skill-icon" />
                   <span>TensorFlow</span>
                 </span>
                 <span className="skill-item">
-                  <span className="skill-icon">🤖</span>
+                  <SkillIcon name="crewai" className="skill-icon" />
                   <span>CrewAI</span>
                 </span>
                 <span className="skill-item">
-                  <span className="skill-icon">⚛️</span>
+                  <SkillIcon name="reactjs" className="skill-icon" />
                   <span>ReactJS</span>
                 </span>
               </div>
@@ -57,19 +60,19 @@ const experience = () => {
               <h3 className="category-title">Knowledge:</h3>
               <div className="skill-items">
                 <span className="skill-item">
-                  <span className="skill-icon">📈</span>
+                  <SkillIcon name="regression" className="skill-icon" />
                   <span>Regression</span>
                 </span>
                 <span className="skill-item">
-                  <span className="skill-icon">🏷️</span>
+                  <SkillIcon name="classification" className="skill-icon" />
                   <span>Classification</span>
                 </span>
                 <span className="skill-item">
-                  <span className="skill-icon">🧬</span>
+                  <SkillIcon name="anns" className="skill-icon" />
                   <span>ANNs</span>
                 </span>
                 <span className="skill-item">
-                  <span className="skill-icon">🖼️</span>
+                  <SkillIcon name="cnns" className="skill-icon" />
                   <span>CNNs</span>
                 </span>
               </div>
@@ -77,16 +80,23 @@ const experience = () => {
             
             <div className="skill-category">
               <h3 className="category-title">Version Control & Collaboration:</h3>
-              <p className="skill-description">
-                Experience in version control using Git and GitHub for collaborative project development
-              </p>
+              <div className="skill-items">
+                <span className="skill-item">
+                  <SkillIcon name="git" className="skill-icon" />
+                  <span>Git</span>
+                </span>
+                <span className="skill-item">
+                  <SkillIcon name="github" className="skill-icon" />
+                  <span>GitHub</span>
+                </span>
+              </div>
             </div>
             
             <div className="skill-category">
               <h3 className="category-title">DevOps & Tools:</h3>
               <div className="skill-items">
                 <span className="skill-item">
-                  <span className="skill-icon">🐳</span>
+                  <SkillIcon name="docker" className="skill-icon" />
                   <span>Docker</span>
                 </span>
               </div>
@@ -110,10 +120,10 @@ const experience = () => {
               <div className="title-container">
                 <h2 className="title">Generative AI Intern</h2>
                 <div className="company-logo">
-                  <img src="https://via.placeholder.com/40x40/9333ea/ffffff?text=A" alt="Company Logo" />
+                  <img src={psychiatraiLogo} alt="Psychiatrai Logo" />
                 </div>
               </div>
-              <div className="company-name">Apple</div>
+              <div className="company-name">Psychiatrai</div>
               <p className="description">
                 Developed a meeting assistant using CrewAI to extract action items and tasks from meeting transcripts | Integrated Slack API to automatically push extracted tasks and updates to team channels.
               </p>
@@ -136,10 +146,10 @@ const experience = () => {
                   Research Intern - Research and Analysis (Portable Fetal Ultrasound Device)
                 </h2>
                 <div className="company-logo">
-                  <img src="https://via.placeholder.com/40x40/ec4899/ffffff?text=S" alt="Company Logo" />
+                  <img src={careLogo} alt="Care Logo" />
                 </div>
               </div>
-              <div className="company-name">Samsung</div>
+              <div className="company-name">Care</div>
               <p className="description">
                 Developed a meeting assistant using CrewAI to extract action items and tasks from meeting transcripts | Integrated Slack API to automatically push extracted tasks and updates to team channels.
               </p>

@@ -8,7 +8,7 @@ import NavigationBar from "../NavigationBar/NavigationBar";
 import Footer from "../Footer/Footer";
 import "./Projects.css";
 import work_data from "../../assets/mywork_data.js";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import Icon from "../Icons/Icon";
 
 const Projects = () => {
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ const Projects = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2 }}
       >
-        <ArrowLeft size={20} />
+        <Icon name="arrowLeft" size={20} />
         <span>Back to Home</span>
       </motion.button>
 
@@ -111,7 +111,7 @@ const Projects = () => {
                     whileTap={{ scale: 0.9 }}
                   >
                     View Details
-                    <ExternalLink size={18} />
+                    <Icon name="externalLink" size={18} />
                   </motion.button>
                 </div>
               </div>
@@ -170,7 +170,7 @@ const Projects = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <span>View Engineering Projects</span>
-                <ExternalLink size={20} />
+                <Icon name="externalLink" size={20} />
               </motion.button>
             </div>
           </motion.div>

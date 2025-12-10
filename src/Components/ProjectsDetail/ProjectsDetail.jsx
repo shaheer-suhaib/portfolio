@@ -8,7 +8,7 @@ import NavigationBar from "../NavigationBar/NavigationBar";
 import Footer from "../Footer/Footer";
 import "./ProjectsDetail.css";
 import work_data from "../../assets/mywork_data.js";
-import { ArrowLeft, ExternalLink, Github, Calendar, Clock, Building2, BookOpen } from "lucide-react";
+import Icon from "../Icons/Icon";
 
 const ProjectsDetail = () => {
   const { id } = useParams();
@@ -75,7 +75,7 @@ const ProjectsDetail = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2 }}
       >
-        <ArrowLeft size={20} />
+        <Icon name="arrowLeft" size={20} />
         <span>Back to Home</span>
       </motion.button>
 
@@ -115,7 +115,7 @@ const ProjectsDetail = () => {
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ duration: 0.2 }}
             >
-              <Calendar size={24} />
+              <Icon name="calendar" size={24} />
               <div>
                 <p className="info-label">Start Date</p>
                 <p className="info-value">{project.startDate}</p>
@@ -127,7 +127,7 @@ const ProjectsDetail = () => {
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ duration: 0.2 }}
             >
-              <Calendar size={24} />
+              <Icon name="calendar" size={24} />
               <div>
                 <p className="info-label">End Date</p>
                 <p className="info-value">{project.endDate}</p>
@@ -139,7 +139,7 @@ const ProjectsDetail = () => {
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ duration: 0.2 }}
             >
-              <Clock size={24} />
+              <Icon name="clock" size={24} />
               <div>
                 <p className="info-label">Timeline</p>
                 <p className="info-value">{project.timeline}</p>
@@ -151,7 +151,7 @@ const ProjectsDetail = () => {
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ duration: 0.2 }}
             >
-              <Building2 size={24} />
+              <Icon name="building" size={24} />
               <div>
                 <p className="info-label">Association</p>
                 <p className="info-value">{project.association}</p>
@@ -170,7 +170,7 @@ const ProjectsDetail = () => {
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ExternalLink size={18} />
+                <Icon name="externalLink" size={18} />
                 <span>Live Demo</span>
               </motion.a>
             )}
@@ -183,7 +183,7 @@ const ProjectsDetail = () => {
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Github size={18} />
+                <Icon name="github" size={18} />
                 <span>View Code</span>
               </motion.a>
             )}
@@ -196,7 +196,7 @@ const ProjectsDetail = () => {
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ExternalLink size={18} />
+                <Icon name="externalLink" size={18} />
                 <span>Demo</span>
               </motion.a>
             )}
@@ -288,7 +288,7 @@ const ProjectsDetail = () => {
           viewport={{ once: true, margin: "-100px" }}
         >
           <h2 className="section-title">
-            <BookOpen size={24} className="title-icon-svg" />
+            <Icon name="book" size={24} className="title-icon-svg" />
             Subjects Applied
           </h2>
           <div className="subjects-list">

@@ -8,7 +8,7 @@ import NavigationBar from "../NavigationBar/NavigationBar";
 import Footer from "../Footer/Footer";
 import "./EngineeredProjects.css";
 import engineered_projects_data from "../../assets/engineered_projects_data.js";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import Icon from "../Icons/Icon";
 
 const EngineeredProjects = () => {
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ const EngineeredProjects = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2 }}
       >
-        <ArrowLeft size={20} />
+        <Icon name="arrowLeft" size={20} />
         <span>Back to Projects</span>
       </motion.button>
 
@@ -111,7 +111,7 @@ const EngineeredProjects = () => {
                     whileTap={{ scale: 0.9 }}
                   >
                     View Details
-                    <ExternalLink size={18} />
+                    <Icon name="externalLink" size={18} />
                   </motion.button>
                 </div>
               </div>

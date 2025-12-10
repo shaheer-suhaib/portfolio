@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Icon from "../Icons/Icon";
 import "./Contact.css";
 
 const Contact = () => {
@@ -72,9 +73,9 @@ const Contact = () => {
           </p>
           <div className="contact-details">
             {[
-              { icon: "📧", text: "shaheersuhaib.pk" },
-              { icon: "📱", text: "1022312314" },
-              { icon: "📍", text: "PK, Islamabad" },
+              { icon: "mail", text: "shaheersuhaib.pk" },
+              { icon: "phone", text: "1022312314" },
+              { icon: "location", text: "PK, Islamabad" },
             ].map((detail, i) => (
               <motion.div
                 key={i}
@@ -83,7 +84,9 @@ const Contact = () => {
                 whileHover={{ scale: 1.05, x: 10 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <span className="contact-icon">{detail.icon}</span>
+                <span className="contact-icon">
+                  <Icon name={detail.icon} size={24} />
+                </span>
                 <p>{detail.text}</p>
               </motion.div>
             ))}
