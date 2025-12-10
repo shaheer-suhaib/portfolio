@@ -228,3 +228,22 @@
   }
 }
 
+/* Additional Responsive Adjustments */
+@media (max-width: 480px) {
+  .projects-title {
+    font-size: 32px;
+  }
+
+  .projects-grid {
+    gap: 20px;
+  }
+
+  .project-card-content {
+    padding: 15px;
+  }
+
+  .project-card-title {
+    font-size: 20px;
+  }
+}
+

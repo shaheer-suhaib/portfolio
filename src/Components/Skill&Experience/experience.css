@@ -191,3 +191,69 @@
   max-height: 200px;
   margin-top: 0.5rem;
 }
+
+/* Additional Responsive Adjustments */
+@media (max-width: 768px) {
+  .columns-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .skills-title,
+  .experience-title {
+    font-size: 1.5rem;
+  }
+
+  .skill-items {
+    justify-content: center;
+  }
+
+  .experience-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .experience-date {
+    font-size: 1rem;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .company-name {
+    font-size: 1rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-title,
+  .experience-title {
+    font-size: 1.2rem;
+  }
+
+  .skill-item {
+    padding: 0.4rem 0.8rem;
+  }
+
+  .experience-date {
+    font-size: 0.9rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .company-name {
+    font-size: 0.9rem;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+}
