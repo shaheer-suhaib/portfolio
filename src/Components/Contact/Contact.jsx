@@ -15,29 +15,13 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setFormData({ name: "", email: "", message: "" });
-      alert("Message sent successfully!");
-    }, 1500);
-  };
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
   };
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
+      transition: { staggerChildren: 0.15 },
     },
   };
 
@@ -46,10 +30,7 @@ const Contact = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.6, ease: "easeOut" },
     },
   };
 
@@ -65,12 +46,14 @@ const Contact = () => {
       <motion.div className="contact-title" variants={itemVariants}>
         <h1>Get in touch</h1>
       </motion.div>
+
       <div className="contact-section">
         <motion.div className="contact-left" variants={itemVariants}>
           <h1>Lets Talk</h1>
           <p>
             I am always open to discussing product design work or partnerships.
           </p>
+
           <div className="contact-details">
             {[
               { icon: "mail", text: "shaheersuhaib.pk" },
@@ -94,43 +77,33 @@ const Contact = () => {
         </motion.div>
 
         <motion.div className="contact-right" variants={itemVariants}>
+          <p className="contact-coming">
+            Contact section integration coming soon.
+          </p>
+
           <form className="contact-form" onSubmit={handleSubmit}>
             <motion.input
               type="text"
               name="name"
               placeholder="Your Name"
               value={formData.name}
-              onChange={handleChange}
-              required
-              whileFocus={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              disabled
             />
             <motion.input
               type="email"
               name="email"
               placeholder="Your Email"
               value={formData.email}
-              onChange={handleChange}
-              required
-              whileFocus={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              disabled
             />
             <motion.textarea
               name="message"
               placeholder="Your Message"
               value={formData.message}
-              onChange={handleChange}
-              required
-              whileFocus={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              disabled
             />
-            <motion.button
-              type="submit"
-              disabled={isSubmitting}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {isSubmitting ? "Sending..." : "Send Message"}
+            <motion.button type="submit" disabled>
+              Send Message
             </motion.button>
           </form>
         </motion.div>
