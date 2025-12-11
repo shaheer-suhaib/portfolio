@@ -125,8 +125,14 @@ const experience = () => {
               </div>
               <div className="company-name">Psychiatrai</div>
               <p className="description">
-                Developed a meeting assistant using CrewAI to extract action items and tasks from meeting transcripts | Integrated Slack API to automatically push extracted tasks and updates to team channels.
-              </p>
+              • Developed a mental health chatbot leveraging Cognitive Behavioral Therapy principles to facilitate structured
+therapeutic sessions and provide AI-powered guidance.
+• Engineered backend architecture for CBT conversation flows using LangGraph nodes and LangChain components
+for context-aware interactions.
+• Deployed LangGraph on self-hosted platforms utilizing LangGraph Server APIs and integrated backend services
+with React.js frontends featuring responsive UIs
+              
+                </p>
             </MovingBorders>
           </div>
           <div className="experience-item">
@@ -151,8 +157,14 @@ const experience = () => {
               </div>
               <div className="company-name">Care</div>
               <p className="description">
-                Developed a meeting assistant using CrewAI to extract action items and tasks from meeting transcripts | Integrated Slack API to automatically push extracted tasks and updates to team channels.
-              </p>
+               
+              Conducted comprehensive model research and selection for machine learning applications in healthcare domain.
+• Researched and evaluated fetal CLIP model architecture for medical imaging analysis.
+• Documented research findings and model performance metrics for fetal CLIP model implementation.
+• Compiled technical documentation detailing model selection criteria, evaluation results, and recommendations
+               
+               
+                </p>
             </MovingBorders>
           </div>
         </div>
