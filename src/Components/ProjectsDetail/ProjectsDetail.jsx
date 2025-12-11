@@ -207,7 +207,7 @@ const ProjectsDetail = () => {
       {/* Main Content */}
       <div className="project-content">
         {/* Story Section */}
-        <motion.section
+        {/* <motion.section
           className="content-section story-section"
           variants={itemVariants}
           initial="hidden"
@@ -219,10 +219,10 @@ const ProjectsDetail = () => {
             Project Story
           </h2>
           <p className="story-text">{project.story}</p>
-        </motion.section>
+        </motion.section> */}
 
         {/* Skills Section */}
-        <motion.section
+        {/* <motion.section
           className="content-section skills-section"
           variants={itemVariants}
           initial="hidden"
@@ -248,7 +248,7 @@ const ProjectsDetail = () => {
               </motion.div>
             ))}
           </div>
-        </motion.section>
+        </motion.section> */}
 
         {/* Technologies Section */}
         <motion.section
@@ -280,7 +280,7 @@ const ProjectsDetail = () => {
         </motion.section>
 
         {/* Subjects Section */}
-        <motion.section
+        {/* <motion.section
           className="content-section subjects-section"
           variants={itemVariants}
           initial="hidden"
@@ -307,7 +307,7 @@ const ProjectsDetail = () => {
               </motion.div>
             ))}
           </div>
-        </motion.section>
+        </motion.section> */}
 
         {/* Timeline Section */}
         <motion.section

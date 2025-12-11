@@ -102,7 +102,7 @@ const About = () => {
               whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <h1>{projectsCount}+</h1>
+              <h1>CS</h1>
               <p>Projects Completed</p>
             </motion.div>
           </motion.div>

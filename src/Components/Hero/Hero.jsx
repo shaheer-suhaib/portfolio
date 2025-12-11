@@ -88,6 +88,12 @@ const Hero = () => {
           className="connect-me"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => {
+            const contactSection = document.getElementById("contact");
+            if (contactSection) {
+              contactSection.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
         >
           Connect With Me
         </motion.div>
@@ -95,6 +101,14 @@ const Hero = () => {
           className="resume"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => {
+            const link = document.createElement("a");
+            link.href = "/assets/shaheer-resume.pdf";
+            link.download = "shaheer-resume.pdf";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }}
         >
           My Resume
         </motion.div>
