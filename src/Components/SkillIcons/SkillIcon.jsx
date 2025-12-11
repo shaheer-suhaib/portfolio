@@ -1,7 +1,7 @@
 import React from "react";
 
 import Langgraph from "../../assets/langgrapg.svg";
-import Langchain from "../../assets/langchain.svg";
+import Langchain from "../../assets/Langchain.svg";
 import Crewai from "../../assets/crewai.png";
 
 // SVG icons from stack folders

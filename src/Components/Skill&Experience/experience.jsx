@@ -143,7 +143,7 @@ const experience = () => {
             >
               <div className="title-container">
                 <h2 className="title">
-                  Research Intern - Research and Analysis (Portable Fetal Ultrasound Device)
+                  Ai/Ml intern
                 </h2>
                 <div className="company-logo">
                   <img src={careLogo} alt="Care Logo" />
