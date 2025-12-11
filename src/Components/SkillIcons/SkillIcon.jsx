@@ -1,6 +1,9 @@
 import React from "react";
 
 import Langgraph from "../../assets/langgrapg.svg";
+import Langchain from "../../assets/langchain.svg";
+import Crewai from "../../assets/crewai.png";
+
 // SVG icons from stack folders
 import dockerIcon from "../../assets/Images/stack/Docker.svg";
 import gitIcon from "../../assets/stack/Git.svg";
@@ -25,6 +28,8 @@ const SkillIcon = ({ name, size = 29, className = "" }) => {
     nodejs: nodejsIcon,
     node: nodejsIcon,
     langgraph: Langgraph,
+    langchain: Langchain,
+    crewai: Crewai,
     // PNG icons
     python: pythonIcon,
     java: javaIcon,

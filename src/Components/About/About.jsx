@@ -60,14 +60,13 @@ const About = () => {
         <div className="about-right">
           <motion.div className="details" variants={itemVariants}>
             <p>
-              I'm a software engineer based in Pakistan and graduated from NUST
-              university. Currently working on Agentic AI projects and keeping
-              up to date with industry demands.
+            I am a passionate and curious learner currently navigating the exciting world of engineering and software development. I love exploring new technologies — from embedded systems and machine learning to full-stack and app development — and bringing ideas to life through hands-on projects.
+
             </p>
           </motion.div>
 
           <motion.div className="skills" variants={itemVariants}>
-            {["Html&Css", "React Js", "LangGraph", "CrewAi"].map((skill, i) => (
+            {["Html&Css", "React", "LangGraph", "CrewAi", "LangChain","TensorFlow","Python","Java","C++","Git","GitHub","Docker"  ].map((skill, i) => (
               <motion.div
                 key={skill}
                 className="skill-name"
