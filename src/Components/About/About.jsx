@@ -2,34 +2,22 @@ import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useCountUp } from "../../hooks/useCountUp";
 import "./About.css";
+import nust_img from "../../assets/NUST.png";
 
 const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const experienceCount = useCountUp(isInView ? 10 : 0, 2000);
   const projectsCount = useCountUp(isInView ? 90 : 0, 2000);
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   const skillVariants = {
@@ -37,10 +25,7 @@ const About = () => {
     visible: (i) => ({
       opacity: 1,
       scale: 1,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.4,
-      },
+      transition: { delay: i * 0.1, duration: 0.4 },
     }),
   };
 
@@ -61,6 +46,7 @@ const About = () => {
       >
         About me
       </motion.div>
+
       <div className="about-content-wrapper">
         <motion.div className="img" variants={itemVariants}>
           <motion.img
@@ -70,48 +56,57 @@ const About = () => {
             transition={{ type: "spring", stiffness: 300 }}
           />
         </motion.div>
+
         <div className="about-right">
-        <motion.div className="details" variants={itemVariants}>
-          <p>
-            I'm a software engineer based in pakistan and graduated from Nust
-            university, Currently working on Agentic Ai projects and Keeping me
-            up to date with industry demands
-          </p>
-        </motion.div>
-        <motion.div className="skills" variants={itemVariants}>
-          {["Html&Css", "React Js", "LangGraph", "CrewAi"].map((skill, i) => (
+          <motion.div className="details" variants={itemVariants}>
+            <p>
+              I'm a software engineer based in Pakistan and graduated from NUST
+              university. Currently working on Agentic AI projects and keeping
+              up to date with industry demands.
+            </p>
+          </motion.div>
+
+          <motion.div className="skills" variants={itemVariants}>
+            {["Html&Css", "React Js", "LangGraph", "CrewAi"].map((skill, i) => (
+              <motion.div
+                key={skill}
+                className="skill-name"
+                custom={i}
+                variants={skillVariants}
+                whileHover={{ scale: 1.1, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {skill}
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div className="experience" variants={itemVariants}>
             <motion.div
-              key={skill}
-              className="skill-name"
-              custom={i}
-              variants={skillVariants}
-              whileHover={{ scale: 1.1, y: -5 }}
-              whileTap={{ scale: 0.95 }}
+              className="experience-type"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
-              {skill}
+              <img
+                src={nust_img}
+                alt="NUST Logo"
+                className="university-logo"
+              />
+              <p>National University of Sciences and Technology</p>
             </motion.div>
-          ))}
-        </motion.div>
-        <motion.div className="experience" variants={itemVariants}>
-          <motion.div
-            className="experience-type"
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <h1>{experienceCount}+</h1>
-            <p>Years of Experience</p>
+
+            <hr />
+
+            <motion.div
+              className="experience-type"
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <h1>{projectsCount}+</h1>
+              <p>Projects Completed</p>
+            </motion.div>
           </motion.div>
-          <hr />
-          <motion.div
-            className="experience-type"
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <h1>{projectsCount}+</h1>
-            <p>Projects Completed</p>
-          </motion.div>
-        </motion.div>
-      </div>
+        </div>
       </div>
     </motion.div>
   );
