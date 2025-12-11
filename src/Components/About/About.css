@@ -31,15 +31,17 @@
 .About .img {
   flex-shrink: 0;
 }
-
 .About img {
   width: 400px;
   height: 400px;
   border-radius: 20px;
   object-fit: cover;
+  object-position: center center; /* Adjust positioning */
   border: 3px solid rgba(185, 35, 225, 0.3);
   transition: transform 0.3s ease;
   box-shadow: 0 10px 40px rgba(185, 35, 225, 0.2);
+  /* Clip the bottom-right corner */
+  clip-path: inset(0 0 50px 0); /* top right bottom left */
 }
 
 .About img:hover {
