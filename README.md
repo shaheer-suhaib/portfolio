@@ -1,16 +1,127 @@
-# Live Link
+# Portfolio - React
 
-https://portfolio-zeta-amber-33.vercel.app/
+A modern, animated portfolio website built with React and Vite.
 
-# React + Vite
+**Live Link:** https://portfolio-zeta-amber-33.vercel.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Tech Stack
 
-Currently, two official plugins are available:
+- **React 19** - UI library
+- **Vite 7** - Build tool
+- **Framer Motion** - Animations
+- **React Router DOM** - Routing
+- **Lucide React** - Icons
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Structure
 
-## Expanding the ESLint configuration
+```
+portfolio-react/
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package.json
+├── README.md
+├── vite.config.js
+│
+├── public/
+│   └── images/
+│
+└── src/
+    ├── App.jsx
+    ├── index.css
+    ├── main.jsx
+    │
+    ├── assets/
+    │   ├── assets/
+    │   ├── icons/
+    │   ├── Images/
+    │   ├── project_pics/
+    │   ├── public/
+    │   └── stack/
+    │   ├── arrow_icon.svg
+    │   ├── call_icon.svg
+    │   ├── crewai.png
+    │   ├── engineered_projects_data.js
+    │   ├── Langchain.svg
+    │   ├── langgrapg.svg
+    │   ├── Langgraph.svg
+    │   ├── location_icon.svg
+    │   ├── mail_icon.svg
+    │   ├── mail-icon.svg
+    │   ├── menu_close.svg
+    │   ├── menu_open.svg
+    │   ├── mywork_data.js
+    │   ├── nav_underline.svg
+    │   ├── NUST.png
+    │   ├── psychiatristai_logo.jfif
+    │   ├── services_data.js
+    │   ├── shaheer-resume.pdf
+    │   ├── theme_pattern.svg
+    │   ├── user_icon.svg
+    │   └── work_data.js
+    │
+    ├── Components/
+    │   ├── About/
+    │   ├── Contact/
+    │   ├── CustomCursor/
+    │   ├── EngineeredProjects/
+    │   ├── Footer/
+    │   ├── Hero/
+    │   ├── Icons/
+    │   ├── LoadingScreen/
+    │   ├── MyWork/
+    │   ├── NavigationBar/
+    │   ├── ParticleBackground/
+    │   ├── Projects/
+    │   ├── ProjectsDetail/
+    │   ├── ScrollProgress/
+    │   ├── Skill&Experience/
+    │   └── SkillIcons/
+    │
+    └── hooks/
+        └── useCountUp.js
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Components Overview
+
+| Component | Description |
+|-----------|-------------|
+| **Hero** | Landing section with animations |
+| **About** | About me section |
+| **Skill&Experience** | Skills and experience display |
+| **MyWork** | Portfolio/work showcase |
+| **EngineeredProjects** | Technical projects section |
+| **ProjectsDetail** | Detailed project views |
+| **Contact** | Contact information and form |
+| **NavigationBar** | Responsive navigation |
+| **Footer** | Footer with social links |
+| **CustomCursor** | Custom cursor effect |
+| **ParticleBackground** | Animated particle background |
+| **LoadingScreen** | Loading animation |
+| **ScrollProgress** | Scroll progress indicator |
+
+## Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run lint` | Run ESLint |
+| `npm run preview` | Preview production build |
+
+## Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+## ESLint Configuration
+
+This project uses ESLint with React-focused rules. Run `npm run lint` to check for issues.

@@ -182,6 +182,12 @@
   cursor: not-allowed;
 }
 
+@media (min-width: 1401px) {
+  .contact {
+    max-width: 80%;
+  }
+}
+
 @media (max-width: 1200px) {
   .contact-section {
     flex-direction: column;
