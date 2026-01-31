@@ -40,8 +40,6 @@
   border: 3px solid rgba(185, 35, 225, 0.3);
   transition: transform 0.3s ease;
   box-shadow: 0 10px 40px rgba(185, 35, 225, 0.2);
-  /* Clip the bottom-right corner */
-  clip-path: inset(0 0 50px 0); /* top right bottom left */
 }
 
 .About img:hover {
@@ -89,7 +87,7 @@
   box-shadow: 0 6px 20px rgba(185, 35, 225, 0.3);
 }
 
-/* .experience {
+.experience {
   width: 100%;
   justify-content: space-around;
   display: flex;
@@ -131,6 +129,22 @@
   margin: 0 40px;
 }
 
+.university-logo {
+  width: auto;
+  height: auto;
+  max-height: 80px; /* Added max-height */
+  object-fit: contain;
+  margin-bottom: 10px;
+  border: none;
+}
+
+/* Larger screen adjustments */
+@media (min-width: 1401px) {
+  .About {
+    max-width: 80%;
+  }
+}
+
 @media (max-width: 1200px) {
   .about-content-wrapper {
     flex-direction: column;
@@ -156,68 +170,6 @@
   .about-content-wrapper {
     flex-direction: column;
   }
-} */
-
-.experience {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 40px;
-  padding: 40px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  gap: 20px;
-}
-
-.experience-type {
-  flex: 1;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease;
-}
-
-.experience-type:hover {
-  transform: translateY(-5px);
-}
-
-.experience-type h1 {
-  font-size: 60px;
-  font-weight: 700;
-  background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 10px;
-}
-
-.experience-type p {
-  font-size: 18px;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 500;
-  text-align: center;
-}
-
-.university-logo {
-  width: auto;
-  height: auto; /* Adjust height to maintain aspect ratio */
-  object-fit: contain;
-  margin-bottom: 10px;
-}
-
-/* Ensure hr line is centered and takes full height */
-.experience hr {
-  border: none;
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
-  height: 80px;
-  margin: 0 40px;
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
   .experience {
     flex-direction: column;
     gap: 30px;
@@ -235,5 +187,30 @@
   .university-logo {
     width: 50px;
     height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .About {
+    padding: 50px 20px;
+    gap: 40px;
+  }
+
+  .about-title {
+    font-size: 36px;
+  }
+
+  .About img {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .details {
+    font-size: 18px;
+  }
+
+  .skill-name {
+    padding: 10px 20px;
+    font-size: 16px;
   }
 }
