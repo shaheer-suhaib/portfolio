@@ -1,11 +1,12 @@
 .contact {
-  gap: 80px;
+  gap: clamp(40px, 6vw, 80px);
   display: flex;
   flex-direction: column;
-  padding: 100px 80px;
-  max-width: 1400px;
+  padding: clamp(50px, 8vw, 120px) clamp(24px, 5vw, 80px);
+  max-width: var(--container-max);
   margin: 0 auto;
   position: relative;
+  width: 100%;
 }
 
 .contact::before {
@@ -26,7 +27,7 @@
 }
 
 .contact-title h1 {
-  font-size: 80px;
+  font-size: clamp(36px, 4vw + 2.5rem, 110px);
   font-weight: 700;
   background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
   -webkit-background-clip: text;
@@ -49,16 +50,19 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 60px;
+  gap: clamp(40px, 4vw, 80px);
+  width: 100%;
 }
 
+/* Columns grow with container on desktop/TV instead of staying narrow */
 .contact-left {
   flex: 1;
-  max-width: 500px;
+  max-width: clamp(400px, 48%, 900px);
+  min-width: 0;
 }
 
 .contact-left h1 {
-  font-size: 50px;
+  font-size: clamp(28px, 2.5vw + 1.25rem, 64px);
   font-weight: 700;
   margin-bottom: 20px;
   background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
@@ -68,7 +72,7 @@
 }
 
 .contact-left p {
-  font-size: 18px;
+  font-size: clamp(16px, 1rem + 0.5vw, 26px);
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 40px;
@@ -84,9 +88,10 @@
 .contact-detail {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 15px 20px;
-  border-radius: 10px;
+  gap: clamp(12px, 1.2vw, 28px);
+  padding: clamp(14px, 1.2vw, 26px) clamp(18px, 1.5vw, 32px);
+  min-height: clamp(52px, 4vw, 72px);
+  border-radius: 12px;
   background: rgba(185, 35, 225, 0.05);
   border: 1px solid rgba(185, 35, 225, 0.2);
   transition: all 0.3s ease;
@@ -100,7 +105,7 @@
 }
 
 .contact-icon {
-  font-size: 24px;
+  font-size: clamp(20px, 1.5vw, 36px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,31 +114,39 @@
 }
 
 .contact-detail p {
-  font-size: 18px;
+  font-size: clamp(15px, 1rem + 0.5vw, 26px);
   margin: 0;
   color: white;
 }
 
 .contact-right {
   flex: 1;
-  max-width: 600px;
+  max-width: clamp(400px, 48%, 900px);
+  min-width: 0;
+}
+
+.contact-coming {
+  font-size: clamp(14px, 1rem + 0.4vw, 22px);
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 1rem;
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: clamp(18px, 1.5vw, 28px);
 }
 
 .contact-form input,
 .contact-form textarea {
-  padding: 18px 25px;
-  border-radius: 10px;
+  padding: clamp(14px, 1.2vw, 26px) clamp(20px, 1.5vw, 34px);
+  min-height: clamp(52px, 4vw, 68px);
+  border-radius: 12px;
   border: 2px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.05);
   color: white;
-  font-size: 18px;
-  font-family: "outfit", sans-serif;
+  font-size: clamp(15px, 1rem + 0.5vw, 26px);
+  font-family: "Roboto", "outfit", sans-serif;
   transition: all 0.3s ease;
   outline: none;
 }
@@ -152,15 +165,15 @@
 }
 
 .contact-form textarea {
-  min-height: 150px;
+  min-height: clamp(120px, 12vw, 220px);
   resize: vertical;
 }
 
 .contact-form button {
-  padding: 20px 50px;
+  padding: clamp(16px, 1.2vw, 28px) clamp(36px, 3vw, 64px);
   border-radius: 50px;
   background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
-  font-size: 22px;
+  font-size: clamp(17px, 1.1rem + 0.5vw, 28px);
   font-weight: 600;
   cursor: pointer;
   border: none;
@@ -180,12 +193,6 @@
 .contact-form button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-}
-
-@media (min-width: 1401px) {
-  .contact {
-    max-width: 80%;
-  }
 }
 
 @media (max-width: 1200px) {
@@ -214,7 +221,14 @@
     font-size: 36px;
   }
 
+  .contact-left p,
+  .contact-detail p,
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 18px; /* Adjusted for smaller screens */
+  }
   .contact-form button {
     width: 100%;
+    font-size: 20px; /* Adjusted for smaller screens */
   }
 }

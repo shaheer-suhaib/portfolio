@@ -25,4 +25,7 @@ dist-ssr
 
 
 Questions.txt
-src/assets
+
+
+prompt.txt
+.blackboxcli/

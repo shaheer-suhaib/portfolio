@@ -108,75 +108,78 @@ const NavigationBar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="hamburger" onClick={toggleMobileMenu}>
-        <div className="bar"></div>
-        <div className="bar"></div>
-        <div className="bar"></div>
-      </div>
+      <div className="nav-content-wrapper">
+        <div className="hamburger" onClick={toggleMobileMenu}>
+          <div className="bar"></div>
+          <div className="bar"></div>
+          <div className="bar"></div>
+        </div>
 
-      <ul className="nav-menue desktop-only">
-        {navItems.map((item) => (
-          <motion.li
-            key={item.id}
-            whileHover={{ y: -2 }}
-            transition={{ type: "spring", stiffness: 400 }}
-          >
-            {isHomePage ? (
-              item.id === "portfolio" ? (
+        <ul className="nav-menue desktop-only">
+          {navItems.map((item) => (
+            <motion.li
+              key={item.id}
+              whileHover={{ y: -2 }}
+              transition={{ type: "spring", stiffness: 400 }}
+            >
+              {isHomePage ? (
+                item.id === "portfolio" ? (
+                  <div
+                    className="AnchorLink"
+                    onClick={() => {
+                      setMenue(item.id);
+                      const element = document.getElementById("work");
+                      if (element) {
+                        window.scrollTo({
+                          top: element.offsetTop,
+                          behavior: "smooth",
+                        });
+                      }
+                    }}
+                  >
+                    <p>{item.label}</p>
+                  </div>
+                ) : (
+                  <AnchorLink
+                    className="AnchorLink"
+                    href={item.href}
+                    offset={item.offset || 0}
+                  >
+                    <p onClick={() => setMenue(item.id)}>{item.label}</p>
+                  </AnchorLink>
+                )
+              ) : (
                 <div
                   className="AnchorLink"
-                  onClick={() => {
-                    setMenue(item.id);
-                    const element = document.getElementById("work");
-                    if (element) {
-                      window.scrollTo({
-                        top: element.offsetTop,
-                        behavior: "smooth",
-                      });
-                    }
-                  }}
+                  onClick={() => handleNavClick(item)}
                 >
                   <p>{item.label}</p>
                 </div>
-              ) : (
-                <AnchorLink
-                  className="AnchorLink"
-                  href={item.href}
-                  offset={item.offset || 0}
-                >
-                  <p onClick={() => setMenue(item.id)}>{item.label}</p>
-                </AnchorLink>
-              )
-            ) : (
-              <div className="AnchorLink" onClick={() => handleNavClick(item)}>
-                <p>{item.label}</p>
-              </div>
-            )}
+              )}
 
-            {menue === item.id && (
-              <motion.img
-                src={underline}
-                alt=""
-                layoutId="underline"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              />
-            )}
-          </motion.li>
-        ))}
-      </ul>
+              {menue === item.id && (
+                <motion.img
+                  src={underline}
+                  alt=""
+                  layoutId="underline"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              )}
+            </motion.li>
+          ))}
+        </ul>
 
-     
-
-      <motion.button
-        className="nav-resume"
-        onClick={handleResumeDownload}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        Resume
-      </motion.button>
+        <motion.button
+          className="nav-resume"
+          onClick={handleResumeDownload}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Resume
+        </motion.button>
+      </div>
 
       <AnimatePresence>
         {mobileOpen && (
