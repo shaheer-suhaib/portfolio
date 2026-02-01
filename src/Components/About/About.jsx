@@ -38,6 +38,7 @@ const About = () => {
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
     >
+      {/* Title */}
       <motion.div
         className="about-title"
         initial={{ opacity: 0, y: -30 }}
@@ -47,64 +48,76 @@ const About = () => {
         About me
       </motion.div>
 
+      {/* Description – full width, always centered under the title */}
+      <motion.div className="details" variants={itemVariants}>
+        <p>
+          I am a passionate and curious learner currently navigating the exciting
+          world of engineering and software development. I love exploring new
+          technologies — from embedded systems and machine learning to full-stack
+          and app development — and bringing ideas to life through hands-on
+          projects.
+        </p>
+      </motion.div>
+
+      {/* Everything below the description */}
       <div className="about-content-wrapper">
-        <motion.div className="img" variants={itemVariants}>
-          <motion.img
-            src="/images/side_img.png"
-            alt="About me"
-            whileHover={{ scale: 1.05, rotate: -2 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          />
-        </motion.div>
-
-        <div className="about-right">
-          <motion.div className="details" variants={itemVariants}>
-            <p>
-            I am a passionate and curious learner currently navigating the exciting world of engineering and software development. I love exploring new technologies — from embedded systems and machine learning to full-stack and app development — and bringing ideas to life through hands-on projects.
-
-            </p>
+        {/* Image + skills side by side (stacks on smaller screens) */}
+        <div className="about-img-row">
+          <motion.div className="img" variants={itemVariants}>
+            <motion.img
+              src="/images/side_img.png"
+              alt="About me"
+              whileHover={{ scale: 1.05, rotate: -2 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            />
           </motion.div>
 
-          <motion.div className="skills" variants={itemVariants}>
-            {["Html&Css", "React", "LangGraph", "CrewAi", "LangChain","TensorFlow","Python","Java","C++","Git","GitHub","Docker"  ].map((skill, i) => (
+          <div className="about-right">
+            <motion.div className="skills" variants={itemVariants}>
+              {[
+                "Html&Css","React","LangGraph","CrewAi",
+                "LangChain","TensorFlow","Python","Java",
+                "C++","Git","GitHub","Docker",
+              ].map((skill, i) => (
+                <motion.div
+                  key={skill}
+                  className="skill-name"
+                  custom={i}
+                  variants={skillVariants}
+                  whileHover={{ scale: 1.1, y: -5 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {skill}
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <motion.div className="experience" variants={itemVariants}>
               <motion.div
-                key={skill}
-                className="skill-name"
-                custom={i}
-                variants={skillVariants}
-                whileHover={{ scale: 1.1, y: -5 }}
-                whileTap={{ scale: 0.95 }}
+                className="experience-type"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
-                {skill}
+                <img
+                  src={nust_img}
+                  alt="NUST Logo"
+                  className="university-logo"
+                />
+                <p>National University of Sciences and Technology</p>
               </motion.div>
-            ))}
-          </motion.div>
 
-          <motion.div className="experience" variants={itemVariants}>
-            <motion.div
-              className="experience-type"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <img
-                src={nust_img}
-                alt="NUST Logo"
-                className="university-logo"
-              />
-              <p>National University of Sciences and Technology</p>
+              <hr />
+
+              <motion.div
+                className="experience-type"
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <h1>CS</h1>
+                <p>Projects Completed</p>
+              </motion.div>
             </motion.div>
-
-            <hr />
-
-            <motion.div
-              className="experience-type"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <h1>CS</h1>
-              <p>Projects Completed</p>
-            </motion.div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </motion.div>

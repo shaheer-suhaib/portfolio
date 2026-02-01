@@ -1,15 +1,16 @@
 .top-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding: 100px 80px;
-  max-width: 1400px;
+  gap: clamp(1.5rem, 2vw, 2.5rem);
+  padding: clamp(50px, 8vw, 120px) clamp(24px, 5vw, 80px);
+  max-width: var(--container-max);
   margin: 0 auto;
   position: relative;
+  width: 100%;
 }
 
 .section-title {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 1.5rem + 0.5vw, 2.5rem);
   font-weight: bold;
   margin-bottom: 1rem;
 }
@@ -26,7 +27,7 @@
 }
 
 .skills-title {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 1.5rem + 0.5vw, 2.5rem);
   font-weight: bold;
   margin-bottom: 1.5rem;
   color: white;
@@ -48,7 +49,7 @@
 }
 
 .category-title {
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 1rem + 0.3vw, 1.4rem);
   font-weight: bold;
   color: white;
   margin: 0;
@@ -63,12 +64,13 @@
 .skill-item {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  gap: clamp(0.4rem, 0.5vw, 0.75rem);
+  padding: clamp(0.5rem, 0.6vw, 0.9rem) clamp(0.9rem, 1vw, 1.25rem);
+  min-height: 44px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 0.5rem;
   color: white;
-  font-size: 0.95rem;
+  font-size: clamp(0.95rem, 1rem + 0.25vw, 1.35rem);
   transition: all 0.3s ease;
 }
 
@@ -78,12 +80,14 @@
 }
 
 .skill-icon {
-  width: 50px;
-  height: 50px;
+  width: clamp(40px, 3.5vw, 56px);
+  height: clamp(40px, 3.5vw, 56px);
+  min-width: 40px;
+  min-height: 40px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: clamp(14px, 1rem, 20px);
   flex-shrink: 0;
 }
 
@@ -97,7 +101,7 @@
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
   margin: 0;
-  font-size: 0.95rem;
+  font-size: clamp(0.95rem, 1rem + 0.2vw, 1.25rem);
 }
 
 .experience-container {
@@ -109,7 +113,7 @@
 }
 
 .experience-title {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 1.5rem + 0.5vw, 2.5rem);
   font-weight: bold;
   margin-bottom: 1rem;
   color: white;
@@ -125,13 +129,13 @@
 }
 
 .experience-date {
-  font-size: 1.2rem;
+  font-size: clamp(1.1rem, 1.1rem + 0.25vw, 1.5rem);
   font-weight: bold;
   background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  min-width: 60px;
+  min-width: clamp(50px, 4vw, 70px);
   padding-top: 0.5rem;
 }
 
@@ -149,7 +153,7 @@
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 1.2rem + 0.4vw, 1.8rem);
   font-weight: bold;
   color: white;
   margin: 0;
@@ -157,8 +161,10 @@
 }
 
 .company-logo {
-  width: 60px;
-  height: 60px;
+  width: clamp(48px, 4vw, 80px);
+  height: clamp(48px, 4vw, 80px);
+  min-width: 48px;
+  min-height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -173,31 +179,53 @@
 }
 
 .company-name {
-  font-size: 1.4rem;
+  font-size: clamp(1.1rem, 1.1rem + 0.3vw, 1.5rem);
   color: rgba(255, 255, 255, 0.8);
   margin-bottom: 0.5rem;
 }
 
 .description {
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.85);
   opacity: 0;
   max-height: 0;
   overflow: hidden;
-  transition: opacity 0.3s ease, max-height 0.3s ease, margin 0.3s ease;
+  transition: opacity 0.3s ease, max-height 0.4s ease, margin 0.3s ease;
   margin: 0;
+  font-size: clamp(0.95rem, 1rem + 0.2vw, 1.25rem);
 }
 
 .moving-border-container:hover .description,
 .experience-card:hover .description {
   opacity: 1;
-  max-height: 200px;
-  margin-top: 0.5rem;
+  max-height: 320px;
+  margin-top: 0.75rem;
+  font-size: clamp(0.95rem, 1rem + 0.25vw, 1.3rem);
 }
 
-@media (min-width: 1401px) {
-  .top-container {
-    max-width: 80%;
+@media (min-width: 1920px) { /* Extra large screens */
+  .skills-title,
+  .experience-title {
+    font-size: 2.5rem;
+  }
+  .category-title {
+    font-size: 1.4rem;
+  }
+  .skill-item,
+  .skill-description {
+    font-size: 1.2rem;
+  }
+  .experience-date {
+    font-size: 1.5rem;
+  }
+  .title {
+    font-size: 1.8rem;
+  }
+  .company-name {
+    font-size: 1.6rem;
+  }
+  .description {
+    font-size: 1.2rem;
   }
 }
 
@@ -224,19 +252,19 @@
   }
 
   .experience-date {
-    font-size: 1rem;
+    font-size: 1.1rem; /* Adjusted for smaller screens */
   }
 
   .title {
-    font-size: 1.2rem;
+    font-size: 1.3rem; /* Adjusted for smaller screens */
   }
 
   .company-name {
-    font-size: 1rem;
+    font-size: 1.1rem; /* Adjusted for smaller screens */
   }
 
   .description {
-    font-size: 0.9rem;
+    font-size: 1rem; /* Adjusted for smaller screens */
   }
 }
 
@@ -248,22 +276,23 @@
 
   .skill-item {
     padding: 0.4rem 0.8rem;
+    font-size: 0.95rem; /* Adjusted for smallest screens */
   }
 
   .experience-date {
-    font-size: 0.9rem;
+    font-size: 1rem; /* Adjusted for smallest screens */
   }
 
   .title {
-    font-size: 1rem;
+    font-size: 1.1rem; /* Adjusted for smallest screens */
   }
 
   .company-name {
-    font-size: 0.9rem;
+    font-size: 1rem; /* Adjusted for smallest screens */
   }
 
   .description {
-    font-size: 0.8rem;
+    font-size: 0.9rem; /* Adjusted for smallest screens */
   }
 }
 

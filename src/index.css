@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -8,16 +10,33 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Fluid typography scale – improves readability across all screen sizes */
+/* Container grows with viewport on desktop/TV so content fills the screen instead of staying narrow */
+:root {
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.9rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1.1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.4vw, 1.35rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
+  --text-2xl: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  --text-3xl: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+  --section-gap: clamp(2rem, 4vw, 5rem);
+  --container-padding: clamp(1.5rem, 5vw, 5rem);
+  /* Grows with viewport: min 1200px, preferred 92vw, max 2600px – fills desktop/TV screens */
+  --container-max: clamp(1200px, 92vw, 2600px);
+}
+
 body {
   background: #0a0a0a;
   background-image: 
     radial-gradient(at 20% 30%, rgba(185, 35, 225, 0.05) 0px, transparent 50%),
     radial-gradient(at 80% 70%, rgba(218, 124, 37, 0.05) 0px, transparent 50%);
   color: white;
-  font-family: "outfit", sans-serif;
+  font-family: "Roboto", sans-serif;
   overflow-x: hidden;
   line-height: 1.6;
   transition: background 0.3s ease;
+  font-size: var(--text-base);
 }
 
 @media (min-width: 769px) {

@@ -1,8 +1,9 @@
 .projects-page {
   min-height: 100vh;
-  padding: 40px 80px 100px;
-  max-width: 1600px;
+  padding: clamp(24px, 4vw, 60px) clamp(24px, 5vw, 80px) clamp(60px, 8vw, 120px);
+  max-width: var(--container-max);
   margin: 0 auto;
+  width: 100%;
 }
 
 .back-button {

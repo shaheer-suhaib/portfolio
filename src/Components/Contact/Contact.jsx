@@ -56,8 +56,8 @@ const Contact = () => {
 
           <div className="contact-details">
             {[
-              { icon: "mail", text: "shaheersuhaib.pk" },
-              { icon: "phone", text: "1022312314" },
+              { icon: "mail", text: "shaheersuhaib.pk@gmail.com" },
+              { icon: "phone", text: "+92 3250368509" },
               { icon: "location", text: "PK, Islamabad" },
             ].map((detail, i) => (
               <motion.div

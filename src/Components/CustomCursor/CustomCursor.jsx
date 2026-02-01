@@ -18,7 +18,13 @@ const CustomCursor = () => {
         e.target.closest('button') ||
         e.target.closest('a') ||
         e.target.closest('.work-img') ||
-        e.target.closest('.skill-name')
+        e.target.closest('.skill-name') ||
+        e.target.closest('.project-card') ||
+        e.target.closest('.show-more') ||
+        e.target.closest('.nav-connect') ||
+        e.target.closest('.nav-resume') ||
+        e.target.closest('.connect-me') ||
+        e.target.closest('.resume')
       ) {
         setIsHovering(true);
       }
@@ -31,7 +37,13 @@ const CustomCursor = () => {
         e.target.closest('button') ||
         e.target.closest('a') ||
         e.target.closest('.work-img') ||
-        e.target.closest('.skill-name')
+        e.target.closest('.skill-name') ||
+        e.target.closest('.project-card') ||
+        e.target.closest('.show-more') ||
+        e.target.closest('.nav-connect') ||
+        e.target.closest('.nav-resume') ||
+        e.target.closest('.connect-me') ||
+        e.target.closest('.resume')
       ) {
         setIsHovering(false);
       }
@@ -51,10 +63,10 @@ const CustomCursor = () => {
   return (
     <>
       <motion.div
-        className="cursor-dot"
+        className={`cursor-dot ${isHovering ? 'hover' : ''}`}
         animate={{
-          x: mousePosition.x - 4,
-          y: mousePosition.y - 4,
+          x: mousePosition.x,
+          y: mousePosition.y,
         }}
         transition={{
           type: "spring",
@@ -66,9 +78,8 @@ const CustomCursor = () => {
       <motion.div
         className={`cursor-outline ${isHovering ? 'hover' : ''}`}
         animate={{
-          x: mousePosition.x - 20,
-          y: mousePosition.y - 20,
-          scale: isHovering ? 1.5 : 1,
+          x: mousePosition.x,
+          y: mousePosition.y,
         }}
         transition={{
           type: "spring",
@@ -82,4 +93,3 @@ const CustomCursor = () => {
 };
 
 export default CustomCursor;
-

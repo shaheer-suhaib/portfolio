@@ -108,6 +108,32 @@ const experience = () => {
         <div className="experience-container">
           <h2 className="experience-title">EXPERIENCE</h2>
           <div className="experience-item">
+            <div className="experience-date">2026 - Present</div>
+            <MovingBorders
+              duration={Math.floor(Math.random() * 10000) + 10000}
+              borderRadius="1.75rem"
+              style={{
+                background: "rgb(4,7,29)",
+                backgroundColor:
+                  "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+                borderRadius: `calc(1.75rem* 0.96)`,
+              }}
+              className="experience-card"
+            >
+              <div className="title-container">
+                <h2 className="title">Full Stack Engineer</h2>
+              </div>
+              <div className="company-name">Zapply</div>
+              <p className="description">
+                • Tech Stack: JavaScript, Chrome Extensions, DOM, Mutation Observers, Communication API, Git
+                • Develop and optimize autofill functionality for multiple platforms, leveraging DOM queries, selectors, and runtime scripts to enhance efficiency.
+                • Implement dynamic field detection using Mutation Observers and message passing APIs to ensure accurate real-time form filling.
+                • Refactor platforms codes, resolve large-scale merge conflicts, and prepare pull requests.
+                • Workflow optimizations with internal tools to ensure reliability and process accuracy.
+              </p>
+            </MovingBorders>
+          </div>
+          <div className="experience-item">
             <div className="experience-date">2022</div>
             <MovingBorders
               duration={Math.floor(Math.random() * 10000) + 10000}
