@@ -1,8 +1,7 @@
 .navBar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 30px 80px;
+  padding: 30px 0;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -14,8 +13,18 @@
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
+.nav-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 80px);
+}
+
 .navBar.scrolled {
-  padding: 20px 80px;
+  padding: 20px 0;
   background: rgba(0, 0, 0, 0.95);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
@@ -23,7 +32,7 @@
 .nav-menue {
   display: flex;
   align-items: center;
-  gap: 60px;
+  gap: clamp(28px, 4vw, 60px);
   list-style: none;
 }
 
@@ -38,7 +47,7 @@
 
 .nav-menue p {
   cursor: pointer;
-  font-size: 18px;
+  font-size: clamp(16px, 1.1rem + 0.3vw, 22px);
   font-weight: 500;
   transition: color 0.3s ease;
   position: relative;
@@ -49,10 +58,10 @@
 }
 
 .nav-connect {
-  padding: 18px 40px;
+  padding: clamp(14px, 1.2vw, 20px) clamp(28px, 2.5vw, 44px);
   border-radius: 50px;
   background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
-  font-size: 20px;
+  font-size: clamp(16px, 1rem + 0.4vw, 22px);
   font-weight: 600;
   cursor: pointer;
   color: white;
@@ -60,16 +69,16 @@
 }
 
 .nav-resume {
-  padding: 18px 40px;
+  padding: clamp(14px, 1.2vw, 20px) clamp(28px, 2.5vw, 44px);
   border-radius: 50px;
   background: transparent;
   border: 2px solid #b923e1;
-  font-size: 20px;
+  font-size: clamp(16px, 1rem + 0.4vw, 22px);
   font-weight: 600;
   cursor: pointer;
   color: white;
   transition: all 0.3s ease;
-  margin-left: 20px;
+  margin-left: clamp(12px, 1.5vw, 20px);
 }
 
 .download-message {
@@ -99,7 +108,19 @@
   display: none;
 }
 
+@media (min-width: 1920px) {
+  .nav-menue p {
+    font-size: clamp(18px, 1.25rem, 24px);
+  }
+  .nav-resume {
+    font-size: clamp(18px, 1.25rem, 24px);
+  }
+}
+
 @media (max-width: 768px) {
+  .nav-content-wrapper {
+    padding: 0 30px;
+  }
   .desktop-only {
     display: none;
   }

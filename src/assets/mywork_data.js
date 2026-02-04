@@ -11,11 +11,11 @@ const mywork_data = [
         w_no: 1,
         w_name: "Meeting Assistant with CrewAI Flow based Automation",
         w_img: project1_img,
-        description: "",
+        description: "An AI meeting assistant that extracts action items and tasks from meeting transcripts  and pushes them to Social Media channels",
         fullDescription: " Built a meeting assistant using CrewAI to extract action items and tasks from meeting transcripts |  Integrated Slack API to automatically push extracted tasks and updates to team channels.",
        
         skills: [],
-        timeline: "12 Days",
+        timeline: "3-4  Days",
         startDate: "30 September 2025",
         endDate: "2 October 2024",
         association: "Self Experiment Project",
@@ -32,7 +32,7 @@ const mywork_data = [
         w_no: 2,
         w_name: "CRM Agent-Marketing AI",
         w_img: project7_img,
-        description: "",
+        description: "An AI powered CRM agent that automates  marketing workflows using structured customer data and RFM analysis",
         fullDescription: "Developed an AI powered CRM agent that automates client management and marketing workflows using structured customer data and RFM analysis |    Built LangGraph workflows for CRM automation and intelligent decision-making with human-in-the-loop validation checkpoints |   Applied RFM analysis for customer segmentation and designed AI-driven campaigns for re-engagement, referral, and loyalty programs |    Integrated with Supabase for real-time data management and used MCP for seamless tool integration.",
         skills: [],
         timeline: "10 days",
@@ -93,7 +93,7 @@ const mywork_data = [
         w_no: 5,
         w_name: "Gym Management System",
         w_img: project5_img,
-        description: "",
+        description: "An desktop application to digitally manage gym operations including member management, trainer management, and attendance tracking and much more options.",
         fullDescription: "I made a GYM Management System for the first time with my experiecne with Foreigner Client. His requirement was to design a desktoop application system that could handle his gym management system digitally. I helped him deliver his requirements by choosing JAVA with NetBeans IDE to make the desktop application. The application had features like member management, trainer management, attendance tracking, and others. I implemented a MySQL database to store all the relevant data securely.  This project enhanced my skills in Java programming and database management.", 
         skills: [],
         timeline: "15 days",
@@ -107,13 +107,13 @@ const mywork_data = [
             github: false,
             demo: false
         },
-        technologies: ["React", "Node.js", "MongoDB", "Express", "Video.js", "AWS S3", "JWT"]
+        technologies: ["JAVA", "MySQL", "NetBeans",]
     },
     {
         w_no: 6,
         w_name: "Efficient Word Finder with File Ranking and Links",
         w_img: project2_img,
-        description: "",
+        description: "An efficient word search engine with interactive GUI for multi-file searching and ranking and other features.",
         fullDescription: "Developed a word search engine with an interactive user interface for efficient multi-file searching and ranking |   Implemented a Ternary Search Tree for optimized word lookups and file location extraction |    Built a file ranking system based on word frequency to prioritize relevant results.",
         skills: [],
         timeline: "1 month",
