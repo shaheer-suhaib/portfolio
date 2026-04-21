@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
 import underline from "../../assets/nav_underline.svg";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import resume from "../../assets/shaheer-resume.pdf";
+const RESUME_URL = import.meta.env.VITE_RESUME_URL;
 
 const NavigationBar = () => {
   const location = useLocation();
@@ -66,12 +66,14 @@ const NavigationBar = () => {
   }, [location.hash, isHomePage]);
 
   const handleResumeDownload = () => {
-    const link = document.createElement("a");
-    link.href = resume;
-    link.download = "shaheer-resume.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    if (RESUME_URL) {
+      const link = document.createElement("a");
+      link.href = RESUME_URL;
+      link.download = "shaheer-resume.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
     setShowDownloadMessage(true);
     setTimeout(() => {
       setShowDownloadMessage(false);

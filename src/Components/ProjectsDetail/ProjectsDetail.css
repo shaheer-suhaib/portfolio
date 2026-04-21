@@ -11,13 +11,16 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: clamp(10px, 1vw, 16px) clamp(20px, 2vw, 36px);
+  padding: clamp(12px, 1.1vw, 18px) clamp(22px, 2.2vw, 40px);
   border-radius: 50px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   background: rgba(255, 255, 255, 0.05);
   color: white;
-  font-size: clamp(15px, 1rem + 0.3vw, 20px);
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: clamp(14px, 0.85rem + 0.3vw, 18px);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-bottom: 40px;
@@ -40,22 +43,27 @@
 }
 
 .project-not-found h1 {
-  font-size: 48px;
-  background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
+  font-size: clamp(42px, 4vw + 1.5rem, 96px);
+  font-weight: 600;
+  letter-spacing: var(--tracking-display);
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .project-not-found button {
-  padding: 15px 40px;
+  padding: 16px 44px;
   border-radius: 50px;
   border: 2px solid white;
   color: white;
-  font-size: 20px;
+  font-family: var(--font-body);
+  font-size: clamp(18px, 1.15rem + 0.3vw, 24px);
   font-weight: 600;
+  letter-spacing: var(--tracking-heading);
   cursor: pointer;
   transition: all 0.3s ease;
+  background: transparent;
 }
 
 .project-not-found button:hover {
@@ -95,21 +103,25 @@
 }
 
 .project-title {
-  font-size: clamp(32px, 4vw + 1.5rem, 72px);
-  font-weight: 700;
-  background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
+  font-size: clamp(42px, 5vw + 1.5rem, 100px);
+  font-weight: 500;
+  letter-spacing: var(--tracking-hero);
+  line-height: var(--leading-hero);
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  line-height: 1.2;
   margin: 0;
 }
 
 .project-description {
-  font-size: clamp(16px, 1.1rem + 0.3vw, 22px);
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-body);
+  font-size: clamp(17px, 1.15rem + 0.4vw, 28px);
+  line-height: 1.75;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.88);
   margin: 0;
+  letter-spacing: var(--tracking-normal);
 }
 
 /* Quick Info Grid */
@@ -144,17 +156,22 @@
 }
 
 .info-label {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0 0 5px 0;
+  font-family: var(--font-mono);
+  font-size: clamp(11px, 0.75rem + 0.2vw, 15px);
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0 0 6px 0;
   font-weight: 500;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
 }
 
 .info-value {
-  font-size: 20px;
+  font-family: var(--font-body);
+  font-size: clamp(18px, 1.2rem + 0.35vw, 26px);
   color: white;
   margin: 0;
   font-weight: 600;
+  letter-spacing: var(--tracking-heading);
 }
 
 /* Project Links */
@@ -169,10 +186,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 15px 30px;
+  padding: clamp(14px, 1.1vw, 20px) clamp(28px, 2.3vw, 44px);
   border-radius: 50px;
-  font-size: 18px;
+  font-family: var(--font-body);
+  font-size: clamp(16px, 1.05rem + 0.35vw, 24px);
   font-weight: 600;
+  letter-spacing: var(--tracking-heading);
   text-decoration: none;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -234,10 +253,12 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  font-size: 36px;
-  font-weight: 700;
+  font-size: clamp(32px, 2.8vw + 1rem, 64px);
+  font-weight: 600;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
   margin: 0 0 30px 0;
-  background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -253,11 +274,13 @@
 
 /* Story Section */
 .story-text {
-  font-size: 20px;
-  line-height: 1.9;
-  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-body);
+  font-size: clamp(17px, 1.15rem + 0.35vw, 26px);
+  line-height: 1.85;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.88);
   margin: 0;
-  text-align: justify;
+  letter-spacing: var(--tracking-normal);
 }
 
 /* Skills Section */
@@ -268,12 +291,14 @@
 }
 
 .skill-badge {
-  padding: 15px 25px;
+  padding: 16px 28px;
   border-radius: 30px;
   background: rgba(185, 35, 225, 0.15);
   border: 2px solid rgba(185, 35, 225, 0.4);
-  font-size: 18px;
+  font-family: var(--font-body);
+  font-size: clamp(16px, 1.05rem + 0.3vw, 22px);
   font-weight: 600;
+  letter-spacing: var(--tracking-heading);
   color: white;
   text-align: center;
   transition: all 0.3s ease;
@@ -294,12 +319,15 @@
 }
 
 .tech-card {
-  padding: 20px;
+  padding: 22px;
   border-radius: 15px;
   background: rgba(218, 124, 37, 0.1);
   border: 2px solid rgba(218, 124, 37, 0.3);
-  font-size: 18px;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: clamp(14px, 0.9rem + 0.25vw, 18px);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
   color: white;
   text-align: center;
   transition: all 0.3s ease;
@@ -345,9 +373,11 @@
 }
 
 .subject-item span {
-  font-size: 20px;
+  font-family: var(--font-body);
+  font-size: clamp(17px, 1.1rem + 0.35vw, 24px);
   color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
+  letter-spacing: var(--tracking-heading);
 }
 
 /* Timeline Section */
@@ -410,65 +440,30 @@
 }
 
 .timeline-content h3 {
-  font-size: 24px;
-  font-weight: 700;
+  font-size: clamp(22px, 1.5rem + 0.5vw, 36px);
+  font-weight: 600;
+  letter-spacing: var(--tracking-heading);
+  line-height: var(--leading-heading);
   margin: 0 0 10px 0;
-  background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .timeline-content p {
-  font-size: 20px;
-  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-body);
+  font-size: clamp(16px, 1.05rem + 0.35vw, 24px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.82);
   margin: 0;
-  font-weight: 500;
+  font-weight: 400;
 }
 
-/* Responsive Design */
-@media (min-width: 1920px) { /* Extra large screens */
+/* Layout-only responsive – type is fluid via clamp() above */
+@media (min-width: 1920px) {
   .projects-detail {
     padding: 60px 100px 120px;
-  }
-  .back-button {
-    font-size: 20px;
-  }
-  .project-not-found h1 {
-    font-size: 58px;
-  }
-  .project-not-found button {
-    font-size: 22px;
-  }
-  .project-title {
-    font-size: 72px;
-  }
-  .project-description {
-    font-size: 22px;
-  }
-  .info-label {
-    font-size: 18px;
-  }
-  .info-value {
-    font-size: 22px;
-  }
-  .link-button {
-    font-size: 20px;
-  }
-  .section-title {
-    font-size: 42px;
-  }
-  .story-text,
-  .subject-item span,
-  .timeline-content p {
-    font-size: 22px;
-  }
-  .skill-badge,
-  .tech-card {
-    font-size: 20px;
-  }
-  .timeline-content h3 {
-    font-size: 28px;
   }
 }
 
@@ -477,19 +472,11 @@
     grid-template-columns: 1fr;
     gap: 40px;
   }
-
-  .project-title {
-    font-size: 48px;
-  }
 }
 
 @media (max-width: 768px) {
   .projects-detail {
     padding: 20px 30px 60px;
-  }
-
-  .project-title {
-    font-size: 36px;
   }
 
   .quick-info-grid {
@@ -509,10 +496,6 @@
 
   .content-section {
     padding: 25px;
-  }
-
-  .section-title {
-    font-size: 28px;
   }
 
   .skills-grid,
@@ -536,21 +519,5 @@
 
   .timeline-dot {
     left: 1px;
-  }
-  .back-button,
-  .project-not-found button,
-  .project-description,
-  .info-label,
-  .info-value,
-  .link-button,
-  .story-text,
-  .skill-badge,
-  .tech-card,
-  .subject-item span,
-  .timeline-content p {
-    font-size: 16px; /* Adjusted for smaller screens */
-  }
-  .project-not-found h1 {
-    font-size: 40px;
   }
 }

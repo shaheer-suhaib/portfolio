@@ -3,6 +3,12 @@ import { motion, useInView } from "framer-motion";
 import { useCountUp } from "../../hooks/useCountUp";
 import "./About.css";
 import nust_img from "../../assets/NUST.png";
+import reactIcon from "../../assets/public/re.svg";
+import langgraphIcon from "../../assets/Langgraph.svg";
+import langchainIcon from "../../assets/Langchain.svg";
+import gitIcon from "../../assets/stack/Git.svg";
+import githubIcon from "../../assets/stack/Github.svg";
+import dockerIcon from "../../assets/Images/stack/Docker.svg";
 
 const About = () => {
   const ref = useRef(null);
@@ -75,19 +81,36 @@ const About = () => {
           <div className="about-right">
             <motion.div className="skills" variants={itemVariants}>
               {[
-                "Html&Css","React","LangGraph","CrewAi",
-                "LangChain","TensorFlow","Python","Java",
-                "C++","Git","GitHub","Docker",
+                { name: "Html&Css" },
+                { name: "React", icon: reactIcon },
+                { name: "LangGraph", icon: langgraphIcon },
+                { name: "CrewAi" },
+                { name: "LangChain", icon: langchainIcon },
+                { name: "TensorFlow" },
+                { name: "Python" },
+                { name: "Java" },
+                { name: "C++" },
+                { name: "Git", icon: gitIcon },
+                { name: "GitHub", icon: githubIcon },
+                { name: "Docker", icon: dockerIcon },
               ].map((skill, i) => (
                 <motion.div
-                  key={skill}
+                  key={skill.name}
                   className="skill-name"
                   custom={i}
                   variants={skillVariants}
                   whileHover={{ scale: 1.1, y: -5 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {skill}
+                  {skill.icon && (
+                    <img
+                      src={skill.icon}
+                      alt=""
+                      aria-hidden="true"
+                      className="skill-icon"
+                    />
+                  )}
+                  <span>{skill.name}</span>
                 </motion.div>
               ))}
             </motion.div>

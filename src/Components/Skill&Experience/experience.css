@@ -10,8 +10,8 @@
 }
 
 .section-title {
-  font-size: clamp(1.5rem, 1.5rem + 0.5vw, 2.5rem);
-  font-weight: bold;
+  font-size: var(--text-4xl);
+  font-weight: 600;
   margin-bottom: 1rem;
 }
 
@@ -27,13 +27,14 @@
 }
 
 .skills-title {
-  font-size: clamp(1.5rem, 1.5rem + 0.5vw, 2.5rem);
-  font-weight: bold;
+  font-size: var(--text-4xl);
+  font-weight: 600;
   margin-bottom: 1.5rem;
   color: white;
   text-decoration: underline;
-  text-underline-offset: 0.5rem;
-  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(185, 35, 225, 0.5);
+  text-underline-offset: 0.7rem;
+  text-decoration-thickness: 3px;
 }
 
 .skills-list {
@@ -49,9 +50,12 @@
 }
 
 .category-title {
-  font-size: clamp(1rem, 1rem + 0.3vw, 1.4rem);
-  font-weight: bold;
-  color: white;
+  font-family: var(--font-mono);
+  font-size: clamp(1.1rem, 1rem + 0.45vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
   margin: 0;
 }
 
@@ -65,12 +69,16 @@
   display: inline-flex;
   align-items: center;
   gap: clamp(0.4rem, 0.5vw, 0.75rem);
-  padding: clamp(0.5rem, 0.6vw, 0.9rem) clamp(0.9rem, 1vw, 1.25rem);
-  min-height: 44px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 0.5rem;
+  padding: clamp(0.6rem, 0.7vw, 1rem) clamp(1rem, 1.1vw, 1.4rem);
+  min-height: 48px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.6rem;
   color: white;
-  font-size: clamp(0.95rem, 1rem + 0.25vw, 1.35rem);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.05rem + 0.3vw, 1.45rem);
+  font-weight: 500;
+  letter-spacing: var(--tracking-heading);
   transition: all 0.3s ease;
 }
 
@@ -98,10 +106,11 @@
 }
 
 .skill-description {
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.7;
   margin: 0;
-  font-size: clamp(0.95rem, 1rem + 0.2vw, 1.25rem);
+  font-size: clamp(1.05rem, 1.05rem + 0.25vw, 1.4rem);
+  font-weight: 400;
 }
 
 .experience-container {
@@ -113,13 +122,14 @@
 }
 
 .experience-title {
-  font-size: clamp(1.5rem, 1.5rem + 0.5vw, 2.5rem);
-  font-weight: bold;
+  font-size: var(--text-4xl);
+  font-weight: 600;
   margin-bottom: 1rem;
   color: white;
   text-decoration: underline;
-  text-underline-offset: 0.5rem;
-  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(218, 124, 37, 0.5);
+  text-underline-offset: 0.7rem;
+  text-decoration-thickness: 3px;
 }
 
 .experience-item {
@@ -129,13 +139,15 @@
 }
 
 .experience-date {
-  font-size: clamp(1.1rem, 1.1rem + 0.25vw, 1.5rem);
-  font-weight: bold;
-  background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
+  font-family: var(--font-mono);
+  font-size: clamp(1.25rem, 1.1rem + 0.55vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  min-width: clamp(50px, 4vw, 70px);
+  min-width: clamp(80px, 6vw, 120px);
   padding-top: 0.5rem;
 }
 
@@ -153,8 +165,11 @@
 }
 
 .title {
-  font-size: clamp(1.2rem, 1.2rem + 0.4vw, 1.8rem);
-  font-weight: bold;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 1.35rem + 0.55vw, 2.15rem);
+  font-weight: 600;
+  letter-spacing: var(--tracking-heading);
+  line-height: var(--leading-heading);
   color: white;
   margin: 0;
   flex: 1;
@@ -179,20 +194,24 @@
 }
 
 .company-name {
-  font-size: clamp(1.1rem, 1.1rem + 0.3vw, 1.5rem);
-  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.05rem + 0.3vw, 1.45rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
   margin-bottom: 0.5rem;
+  letter-spacing: var(--tracking-heading);
 }
 
 .description {
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.88);
   opacity: 0;
   max-height: 0;
   overflow: hidden;
   transition: opacity 0.3s ease, max-height 0.4s ease, margin 0.3s ease;
   margin: 0;
-  font-size: clamp(0.95rem, 1rem + 0.2vw, 1.25rem);
+  font-size: clamp(1.05rem, 1.05rem + 0.25vw, 1.4rem);
+  font-weight: 400;
 }
 
 .moving-border-container:hover .description,
@@ -200,45 +219,13 @@
   opacity: 1;
   max-height: 320px;
   margin-top: 0.75rem;
-  font-size: clamp(0.95rem, 1rem + 0.25vw, 1.3rem);
 }
 
-@media (min-width: 1920px) { /* Extra large screens */
-  .skills-title,
-  .experience-title {
-    font-size: 2.5rem;
-  }
-  .category-title {
-    font-size: 1.4rem;
-  }
-  .skill-item,
-  .skill-description {
-    font-size: 1.2rem;
-  }
-  .experience-date {
-    font-size: 1.5rem;
-  }
-  .title {
-    font-size: 1.8rem;
-  }
-  .company-name {
-    font-size: 1.6rem;
-  }
-  .description {
-    font-size: 1.2rem;
-  }
-}
-
-/* Additional Responsive Adjustments */
+/* Layout-only responsive – type sizes are driven by clamp() above */
 @media (max-width: 768px) {
   .columns-container {
     flex-direction: column;
     gap: 2rem;
-  }
-
-  .skills-title,
-  .experience-title {
-    font-size: 1.5rem;
   }
 
   .skill-items {
@@ -250,49 +237,11 @@
     align-items: center;
     text-align: center;
   }
-
-  .experience-date {
-    font-size: 1.1rem; /* Adjusted for smaller screens */
-  }
-
-  .title {
-    font-size: 1.3rem; /* Adjusted for smaller screens */
-  }
-
-  .company-name {
-    font-size: 1.1rem; /* Adjusted for smaller screens */
-  }
-
-  .description {
-    font-size: 1rem; /* Adjusted for smaller screens */
-  }
 }
 
 @media (max-width: 480px) {
-  .skills-title,
-  .experience-title {
-    font-size: 1.2rem;
-  }
-
   .skill-item {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.95rem; /* Adjusted for smallest screens */
-  }
-
-  .experience-date {
-    font-size: 1rem; /* Adjusted for smallest screens */
-  }
-
-  .title {
-    font-size: 1.1rem; /* Adjusted for smallest screens */
-  }
-
-  .company-name {
-    font-size: 1rem; /* Adjusted for smallest screens */
-  }
-
-  .description {
-    font-size: 0.9rem; /* Adjusted for smallest screens */
+    padding: 0.5rem 0.9rem;
   }
 }
 

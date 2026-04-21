@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./Hero.css";
 
+const RESUME_URL = import.meta.env.VITE_RESUME_URL;
+
 const Hero = () => {
   const [displayText, setDisplayText] = useState("");
   const fullText = "I'm software engineer based in pakistan";
@@ -102,12 +104,14 @@ const Hero = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => {
-            const link = document.createElement("a");
-            link.href = "/assets/shaheer-resume.pdf";
-            link.download = "shaheer-resume.pdf";
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            if (RESUME_URL) {
+              const link = document.createElement("a");
+              link.href = RESUME_URL;
+              link.download = "shaheer-resume.pdf";
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }
           }}
         >
           My Resume

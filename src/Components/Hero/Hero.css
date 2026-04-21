@@ -76,22 +76,19 @@
 }
 
 .hero-section h1 {
-  font-size: clamp(40px, 8vw, 90px);
-  font-weight: 700;
+  font-size: clamp(48px, 9.5vw, 140px);
   text-align: center;
-  line-height: 1.2;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 20px 0;
-  letter-spacing: -2px;
 }
 
 .hero-section h1 span {
-  background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 0.08em;
 }
 
 .cursor-blink {
@@ -108,11 +105,13 @@
 }
 
 .connect-me {
-  padding: clamp(16px, 1.2vw, 24px) clamp(36px, 3vw, 56px);
+  padding: clamp(18px, 1.3vw, 26px) clamp(40px, 3.2vw, 64px);
   border-radius: 50px;
-  background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
-  font-size: clamp(17px, 1.1rem + 0.3vw, 26px);
+  background: var(--accent-gradient);
+  font-family: var(--font-body);
+  font-size: clamp(18px, 1.15rem + 0.35vw, 28px);
   font-weight: 600;
+  letter-spacing: var(--tracking-heading);
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(185, 35, 225, 0.3);
@@ -127,11 +126,13 @@
 }
 
 .resume {
-  padding: clamp(16px, 1.2vw, 24px) clamp(36px, 3vw, 56px);
+  padding: clamp(18px, 1.3vw, 26px) clamp(40px, 3.2vw, 64px);
   border-radius: 50px;
   border: 2px solid white;
-  font-size: clamp(17px, 1.1rem + 0.3vw, 26px);
+  font-family: var(--font-body);
+  font-size: clamp(18px, 1.15rem + 0.35vw, 28px);
   font-weight: 600;
+  letter-spacing: var(--tracking-heading);
   cursor: pointer;
   transition: all 0.3s ease;
   background: transparent;

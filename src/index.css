@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 * {
   margin: 0;
@@ -10,38 +10,149 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Fluid typography scale – improves readability across all screen sizes */
-/* Container grows with viewport on desktop/TV so content fills the screen instead of staying narrow */
+/* ---------------------------------------------------------------
+   Typography system
+   Display: Fraunces (variable serif – editorial character + SOFT axis)
+   Body:    Manrope  (refined geometric sans)
+   Mono:    JetBrains Mono (for labels, code, captions)
+   All sizes scale fluidly across mobile → 4K using clamp().
+   --------------------------------------------------------------- */
 :root {
-  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.9rem);
-  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1.1rem);
-  --text-base: clamp(1rem, 0.95rem + 0.4vw, 1.35rem);
-  --text-lg: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
-  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
-  --text-2xl: clamp(1.5rem, 1.2rem + 1vw, 2rem);
-  --text-3xl: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+  --font-display: 'Fraunces', 'Playfair Display', 'Times New Roman', serif;
+  --font-body: 'Manrope', 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* Fluid type scale – bumped up for stronger presence */
+  --text-xs:    clamp(0.8rem, 0.72rem + 0.3vw, 1rem);
+  --text-sm:    clamp(0.95rem, 0.88rem + 0.35vw, 1.2rem);
+  --text-base:  clamp(1.125rem, 1.05rem + 0.4vw, 1.5rem);
+  --text-lg:    clamp(1.3rem, 1.2rem + 0.55vw, 1.75rem);
+  --text-xl:    clamp(1.55rem, 1.35rem + 0.85vw, 2.1rem);
+  --text-2xl:   clamp(1.9rem, 1.55rem + 1.2vw, 2.65rem);
+  --text-3xl:   clamp(2.4rem, 1.9rem + 1.8vw, 3.5rem);
+  --text-4xl:   clamp(3rem, 2.3rem + 2.6vw, 4.75rem);
+  --text-5xl:   clamp(3.75rem, 2.75rem + 4vw, 6.75rem);
+  --text-6xl:   clamp(4.5rem, 3rem + 6vw, 9rem);
+  --text-7xl:   clamp(5.25rem, 3.25rem + 8vw, 11rem);
+
+  /* Letter-spacing scale */
+  --tracking-hero:    -0.045em;
+  --tracking-display: -0.03em;
+  --tracking-heading: -0.015em;
+  --tracking-normal:  -0.005em;
+  --tracking-wide:    0.08em;
+  --tracking-widest:  0.16em;
+
+  /* Line-height scale */
+  --leading-hero:    0.95;
+  --leading-display: 1.05;
+  --leading-heading: 1.15;
+  --leading-body:    1.65;
+  --leading-loose:   1.8;
+
+  /* Layout tokens (preserved) */
   --section-gap: clamp(2rem, 4vw, 5rem);
   --container-padding: clamp(1.5rem, 5vw, 5rem);
-  /* Grows with viewport: min 1200px, preferred 92vw, max 2600px – fills desktop/TV screens */
   --container-max: clamp(1200px, 92vw, 2600px);
+
+  /* Accent gradient (shared) */
+  --accent-gradient: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);
+  --accent-gradient-hover: linear-gradient(267deg, #e88a3a 0.36%, #c944f0 100%);
 }
 
 body {
   background: #0a0a0a;
-  background-image: 
+  background-image:
     radial-gradient(at 20% 30%, rgba(185, 35, 225, 0.05) 0px, transparent 50%),
     radial-gradient(at 80% 70%, rgba(218, 124, 37, 0.05) 0px, transparent 50%);
   color: white;
-  font-family: "Roboto", sans-serif;
-  overflow-x: hidden;
-  line-height: 1.6;
-  transition: background 0.3s ease;
+  font-family: var(--font-body);
   font-size: var(--text-base);
+  font-weight: 400;
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-normal);
+  overflow-x: hidden;
+  transition: background 0.3s ease;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "ss02", "cv11";
+}
+
+/* ---------------------------------------------------------------
+   Global heading defaults – applied via element & class selectors
+   so every section inherits the distinctive display font, tighter
+   tracking, and tighter leading without editing each file.
+   --------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6,
+.hero-section h1,
+.about-title,
+.skills-title,
+.work-title,
+.projects-title,
+.contact-title h1,
+.contact-left h1,
+.footer-left h3,
+.project-title,
+.section-title,
+.work-overlay-title,
+.project-card-title,
+.timeline-content h3,
+.experience-type h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
+  font-variation-settings: "opsz" 96, "SOFT" 30;
+}
+
+/* Hero-scale heading gets the tightest display treatment */
+.hero-section h1,
+.about-title,
+.work-title,
+.projects-title,
+.contact-title h1 {
+  letter-spacing: var(--tracking-hero);
+  line-height: var(--leading-hero);
+  font-weight: 500;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+
+/* Gradient-fill works better when text is heavier + larger */
+.hero-section h1 span,
+.about-title span,
+.work-title span,
+.projects-title span,
+.contact-title h1 span {
+  font-weight: 600;
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 80;
+}
+
+/* Body text refinements */
+p, li, span, a, button, input, textarea, label {
+  font-family: inherit;
+}
+
+/* Monospace accent for labels, meta, code-adjacent UI */
+.mono, .skill-tag, .project-meta-item,
+code, kbd, pre, samp {
+  font-family: var(--font-mono);
+  letter-spacing: var(--tracking-wide);
+  font-feature-settings: "zero", "ss01";
+}
+
+/* Uppercase label utility – use sparingly for section eyebrows */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 @media (min-width: 769px) {
   body {
-    cursor: none; /* Hide default cursor when custom cursor is active */
+    cursor: none;
   }
 }
 
@@ -55,22 +166,22 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #da7c25 0%, #b923e1 100%);
+  background: var(--accent-gradient);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #e88a3a 0%, #c944f0 100%);
+  background: var(--accent-gradient-hover);
 }
 
 /* Selection styling */
 ::selection {
-  background: rgba(185, 35, 225, 0.3);
+  background: rgba(185, 35, 225, 0.35);
   color: white;
 }
 
 ::-moz-selection {
-  background: rgba(185, 35, 225, 0.3);
+  background: rgba(185, 35, 225, 0.35);
   color: white;
 }
 

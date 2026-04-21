@@ -108,7 +108,7 @@ const experience = () => {
         <div className="experience-container">
           <h2 className="experience-title">EXPERIENCE</h2>
           <div className="experience-item">
-            <div className="experience-date">2026 - Present</div>
+            <div className="experience-date">2025 - Present</div>
             <MovingBorders
               duration={Math.floor(Math.random() * 10000) + 10000}
               borderRadius="1.75rem"
@@ -134,7 +134,7 @@ const experience = () => {
             </MovingBorders>
           </div>
           <div className="experience-item">
-            <div className="experience-date">2022</div>
+            <div className="experience-date">2025</div>
             <MovingBorders
               duration={Math.floor(Math.random() * 10000) + 10000}
               borderRadius="1.75rem"
@@ -166,7 +166,7 @@ const experience = () => {
             </MovingBorders>
           </div>
           <div className="experience-item">
-            <div className="experience-date">2022</div>
+            <div className="experience-date">2025</div>
             <MovingBorders
               duration={Math.floor(Math.random() * 10000) + 10000}
               borderRadius="1.75rem"
