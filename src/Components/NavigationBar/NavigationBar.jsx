@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import underline from "../../assets/nav_underline.svg";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 const RESUME_URL = import.meta.env.VITE_RESUME_URL;
+const RESUME_DOWNLOAD_URL = import.meta.env.VITE_RESUME_DOWNLOAD_URL;
 
 const NavigationBar = () => {
   const location = useLocation();
@@ -67,8 +68,11 @@ const NavigationBar = () => {
 
   const handleResumeDownload = () => {
     if (RESUME_URL) {
+      window.open(RESUME_URL, "_blank");
+    }
+    if (RESUME_DOWNLOAD_URL) {
       const link = document.createElement("a");
-      link.href = RESUME_URL;
+      link.href = RESUME_DOWNLOAD_URL;
       link.download = "shaheer-resume.pdf";
       document.body.appendChild(link);
       link.click();

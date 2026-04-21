@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import "./Hero.css";
 
 const RESUME_URL = import.meta.env.VITE_RESUME_URL;
+const RESUME_DOWNLOAD_URL = import.meta.env.VITE_RESUME_DOWNLOAD_URL;
 
 const Hero = () => {
   const [displayText, setDisplayText] = useState("");
@@ -105,8 +106,11 @@ const Hero = () => {
           whileTap={{ scale: 0.95 }}
           onClick={() => {
             if (RESUME_URL) {
+              window.open(RESUME_URL, "_blank");
+            }
+            if (RESUME_DOWNLOAD_URL) {
               const link = document.createElement("a");
-              link.href = RESUME_URL;
+              link.href = RESUME_DOWNLOAD_URL;
               link.download = "shaheer-resume.pdf";
               document.body.appendChild(link);
               link.click();
