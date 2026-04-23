@@ -9,6 +9,11 @@ import langchainIcon from "../../assets/Langchain.svg";
 import gitIcon from "../../assets/stack/Git.svg";
 import githubIcon from "../../assets/stack/Github.svg";
 import dockerIcon from "../../assets/Images/stack/Docker.svg";
+import htmlcssIcon from "../../assets/Images/stack/HTML.png";
+import javaicon from "../../assets/icons/icons8-java-96.png";
+import cppicon from "../../assets/Images/stack/cpp.svg";
+import python from "../../assets/icons/icons8-python-96.png";
+import javascriptIcon from "../../assets/Images/stack/Javascript.svg";
 
 const About = () => {
   const ref = useRef(null);
@@ -81,18 +86,19 @@ const About = () => {
           <div className="about-right">
             <motion.div className="skills" variants={itemVariants}>
               {[
-                { name: "Html&Css" },
+                { name: "Html&Css", icon: htmlcssIcon },
                 { name: "React", icon: reactIcon },
                 { name: "LangGraph", icon: langgraphIcon },
                 { name: "CrewAi" },
                 { name: "LangChain", icon: langchainIcon },
                 { name: "TensorFlow" },
-                { name: "Python" },
-                { name: "Java" },
-                { name: "C++" },
+                { name: "Python", icon: python },
+                { name: "Java", icon: javaicon },
+                { name: "C++", icon: cppicon },
                 { name: "Git", icon: gitIcon },
                 { name: "GitHub", icon: githubIcon },
                 { name: "Docker", icon: dockerIcon },
+                { name: "Javascript", icon: javascriptIcon }
               ].map((skill, i) => (
                 <motion.div
                   key={skill.name}
