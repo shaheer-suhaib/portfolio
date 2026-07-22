@@ -1,4 +1,5 @@
 import React from "react";
+import { Database, Server } from "lucide-react";
 
 import Langgraph from "../../assets/langgrapg.svg";
 import Langchain from "../../assets/Langchain.svg";
@@ -10,6 +11,15 @@ import gitIcon from "../../assets/stack/Git.svg";
 import githubIcon from "../../assets/stack/Github.svg";
 import javascriptIcon from "../../assets/stack/Javascript.svg";
 import nodejsIcon from "../../assets/stack/NodeJs.svg";
+import htmlIcon from "../../assets/Images/stack/HTML.png";
+import cssIcon from "../../assets/Images/stack/CSS.png";
+import expressIcon from "../../assets/Images/stack/Express.png";
+import mongodbIcon from "../../assets/stack/MongoDB.svg";
+import vercelIcon from "../../assets/stack/Vercel.svg";
+import cppIcon from "../../assets/Images/stack/cpp.svg";
+import mysqlIcon from "../../assets/mysql-logo-svgrepo-com.svg";
+import supabaseIcon from "../../assets/supabase-logo-icon.svg";
+import azureIcon from "../../assets/azure-icon-svgrepo-com.svg";
 // PNG icons from icons folder
 import pythonIcon from "../../assets/icons/icons8-python-96.png";
 import javaIcon from "../../assets/icons/icons8-java-96.png";
@@ -33,12 +43,25 @@ const SkillIcon = ({ name, size = 29, className = "" }) => {
     // PNG icons
     python: pythonIcon,
     java: javaIcon,
-    "c++": cIcon,
+    "c++": cppIcon,
     cpp: cIcon,
     c: cIcon,
     tensorflow: tensorflowIcon,
     reactjs: reactIcon,
     react: reactIcon,
+    "react.js": reactIcon,
+    html5: htmlIcon,
+    html: htmlIcon,
+    css3: cssIcon,
+    css: cssIcon,
+    "node.js": nodejsIcon,
+    "express.js": expressIcon,
+    express: expressIcon,
+    mongodb: mongodbIcon,
+    mysql: mysqlIcon,
+    supabase: supabaseIcon,
+    vercel: vercelIcon,
+    "microsoft azure": azureIcon,
   };
 
   const iconSrc = iconMap[name.toLowerCase()];
@@ -56,21 +79,20 @@ const SkillIcon = ({ name, size = 29, className = "" }) => {
     );
   }
 
-  // Fallback to emoji if no icon found
-  const emojiMap = {
-    langchain: "🔗",
-    langgraph: "📊",
-    crewai: "🤖",
-    regression: "📈",
-    classification: "🏷️",
-    anns: "🧬",
-    cnns: "🖼️",
+  const fallbackIconMap = {
+    "sql server": Database,
+    redis: Database,
+    render: Server,
   };
+  const FallbackIcon = fallbackIconMap[name.toLowerCase()] || Server;
 
   return (
-    <span style={{ fontSize: `${size}px` }}>
-      {emojiMap[name.toLowerCase()] || "🔧"}
-    </span>
+    <FallbackIcon
+      aria-label={name}
+      className={className}
+      size={size}
+      strokeWidth={1.8}
+    />
   );
 };
 

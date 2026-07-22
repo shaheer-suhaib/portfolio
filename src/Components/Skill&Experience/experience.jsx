@@ -5,6 +5,34 @@ import SkillIcon from "../SkillIcons/SkillIcon";
 import psychiatraiLogo from "../../assets/psychiatrai_logo.jfif";
 import careLogo from "../../assets/care.jfif";
 
+const skillCategories = [
+  { title: "Languages", skills: ["Python", "Java", "C++", "JavaScript"] },
+  { title: "Frontend & UI", skills: ["HTML5", "CSS3", "React.js"] },
+  {
+    title: "Backend & AI Frameworks",
+    skills: [
+      "Node.js",
+      "Express.js",
+      "LangChain",
+      "LangGraph",
+      "TensorFlow",
+      "CrewAI",
+    ],
+  },
+  {
+    title: "Databases",
+    skills: ["MongoDB", "SQL Server", "MySQL", "Supabase", "Redis"],
+  },
+  {
+    title: "Cloud, Deployment & DevOps",
+    skills: ["Docker", "Vercel", "Render", "Microsoft Azure"],
+  },
+  {
+    title: "Version Control & Collaboration",
+    skills: ["Git", "GitHub"],
+  },
+];
+
 const experience = () => {
   return (
     <div className="top-container">
@@ -12,97 +40,19 @@ const experience = () => {
         <div className="skill-container">
           <h2 className="skills-title">SKILLS</h2>
           <div className="skills-list">
-            <div className="skill-category">
-              <h3 className="category-title">Languages:</h3>
-              <div className="skill-items">
-                <span className="skill-item">
-                  <SkillIcon name="python" className="skill-icon" />
-                  <span>Python</span>
-                </span>
-                <span className="skill-item">
-                  <SkillIcon name="java" className="skill-icon" />
-                  <span>Java</span>
-                </span>
-                <span className="skill-item">
-                  <SkillIcon name="c++" className="skill-icon" />
-                  <span>C++</span>
-                </span>
+            {skillCategories.map((category) => (
+              <div className="skill-category" key={category.title}>
+                <h3 className="category-title">{category.title}:</h3>
+                <div className="skill-items">
+                  {category.skills.map((skill) => (
+                    <span className="skill-item" key={skill}>
+                      <SkillIcon name={skill} className="skill-icon" />
+                      <span>{skill}</span>
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-
-            <div className="skill-category">
-              <h3 className="category-title">Frameworks:</h3>
-              <div className="skill-items">
-                <span className="skill-item">
-                  <SkillIcon name="langchain" className="skill-icon" />
-                  <span>LangChain</span>
-                </span>
-                <span className="skill-item">
-                  <SkillIcon name="langgraph" className="skill-icon" />
-                  <span>LangGraph</span>
-                </span>
-                <span className="skill-item">
-                  <SkillIcon name="tensorflow" className="skill-icon" />
-                  <span>TensorFlow</span>
-                </span>
-                <span className="skill-item">
-                  <SkillIcon name="crewai" className="skill-icon" />
-                  <span>CrewAI</span>
-                </span>
-                <span className="skill-item">
-                  <SkillIcon name="reactjs" className="skill-icon" />
-                  <span>ReactJS</span>
-                </span>
-              </div>
-            </div>
-
-            <div className="skill-category">
-              <h3 className="category-title">Knowledge:</h3>
-              <div className="skill-items">
-                <span className="skill-item">
-                  <SkillIcon name="regression" className="skill-icon" />
-                  <span>Regression</span>
-                </span>
-                <span className="skill-item">
-                  <SkillIcon name="classification" className="skill-icon" />
-                  <span>Classification</span>
-                </span>
-                <span className="skill-item">
-                  <SkillIcon name="anns" className="skill-icon" />
-                  <span>ANNs</span>
-                </span>
-                <span className="skill-item">
-                  <SkillIcon name="cnns" className="skill-icon" />
-                  <span>CNNs</span>
-                </span>
-              </div>
-            </div>
-
-            <div className="skill-category">
-              <h3 className="category-title">
-                Version Control & Collaboration:
-              </h3>
-              <div className="skill-items">
-                <span className="skill-item">
-                  <SkillIcon name="git" className="skill-icon" />
-                  <span>Git</span>
-                </span>
-                <span className="skill-item">
-                  <SkillIcon name="github" className="skill-icon" />
-                  <span>GitHub</span>
-                </span>
-              </div>
-            </div>
-
-            <div className="skill-category">
-              <h3 className="category-title">DevOps & Tools:</h3>
-              <div className="skill-items">
-                <span className="skill-item">
-                  <SkillIcon name="docker" className="skill-icon" />
-                  <span>Docker</span>
-                </span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
         <div className="experience-container">
