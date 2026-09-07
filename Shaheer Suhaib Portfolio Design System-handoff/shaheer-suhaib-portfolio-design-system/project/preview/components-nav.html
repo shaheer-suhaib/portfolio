@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { background: #0a0a0a; margin: 0; padding: 0; }
+  .nav {
+    display: flex; align-items: center; padding: 20px 0;
+    background: rgba(0,0,0,0.85); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+  }
+  .nav-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    width: 100%; padding: 0 48px;
+  }
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links li { position: relative; }
+  .nav-links a {
+    font-family: var(--font-body); font-size: 20px; font-weight: 500;
+    color: white; text-decoration: none; letter-spacing: -0.015em;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: #b923e1; }
+  .nav-links .active a { color: white; }
+  .underline-bar {
+    position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%);
+    width: 24px; height: 3px; border-radius: 2px;
+    background: linear-gradient(267deg, #da7c25, #b923e1);
+  }
+  .nav-resume {
+    padding: 12px 32px; border-radius: 50px; background: transparent;
+    border: 2px solid #b923e1; font-family: var(--font-body); font-size: 19px;
+    font-weight: 600; color: white; cursor: pointer; letter-spacing: -0.015em;
+    transition: all 0.3s;
+  }
+  .nav-resume:hover { background: #b923e1; }
+  .scrolled-demo {
+    display: flex; align-items: center; padding: 14px 0; margin-top: 8px;
+    background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.3); padding: 8px 48px 4px; }
+</style>
+</head>
+<body>
+  <div class="label">Default (top of page)</div>
+  <nav class="nav">
+    <div class="nav-inner">
+      <ul class="nav-links">
+        <li class="active"><a href="#">Home</a><div class="underline-bar"></div></li>
+        <li><a href="#">About Me</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <button class="nav-resume">Resume</button>
+    </div>
+  </nav>
+
+  <div class="label">Scrolled (compact)</div>
+  <nav class="scrolled-demo">
+    <div class="nav-inner">
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li class="active"><a href="#" style="color:#b923e1">About Me</a><div class="underline-bar"></div></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <button class="nav-resume">Resume</button>
+    </div>
+  </nav>
+</body>
+</html>

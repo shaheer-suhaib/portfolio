@@ -85,7 +85,7 @@ const Projects = () => {
         </motion.div>
 
         <div className="projects-grid">
-          {work_data.map((project, index) => (
+          {work_data.map((project) => (
             <motion.div
               key={project.w_no}
               className="project-card"

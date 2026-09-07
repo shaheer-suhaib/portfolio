@@ -215,7 +215,6 @@ const ProjectsDetail = () => {
           viewport={{ once: true, margin: "-100px" }}
         >
           <h2 className="section-title">
-            <span className="title-icon">📖</span>
             Project Story
           </h2>
           <p className="story-text">{project.story}</p>
@@ -230,7 +229,6 @@ const ProjectsDetail = () => {
           viewport={{ once: true, margin: "-100px" }}
         >
           <h2 className="section-title">
-            <span className="title-icon">🛠️</span>
             Skills Learned
           </h2>
           <div className="skills-grid">
@@ -259,7 +257,6 @@ const ProjectsDetail = () => {
           viewport={{ once: true, margin: "-100px" }}
         >
           <h2 className="section-title">
-            <span className="title-icon">⚙️</span>
             Technologies Used
           </h2>
           <div className="technologies-grid">
@@ -288,7 +285,6 @@ const ProjectsDetail = () => {
           viewport={{ once: true, margin: "-100px" }}
         >
           <h2 className="section-title">
-            <Icon name="book" size={24} className="title-icon-svg" />
             Subjects Applied
           </h2>
           <div className="subjects-list">
@@ -318,7 +314,6 @@ const ProjectsDetail = () => {
           viewport={{ once: true, margin: "-100px" }}
         >
           <h2 className="section-title">
-            <span className="title-icon">📅</span>
             Project Timeline
           </h2>
           <div className="timeline-container">

@@ -1,10 +1,9 @@
-import project1_img from './project_pics/1.png'
-import project2_img from './project_pics/2.png'
-import project3_img from './project_pics/image.png'
-import project4_img from './project_pics/3.png'
-import project5_img from './project_pics/5.png'
-import project7_img from './project_pics/6.png'
-import project6_img from './project_pics/image.png'
+import project1_img from './project_pics/1.webp'
+import project2_img from './project_pics/2.webp'
+import project3_img from './project_pics/image.webp'
+import project4_img from './project_pics/3.webp'
+import project5_img from './project_pics/5.webp'
+import project7_img from './project_pics/6.webp'
 
 const mywork_data = [
     {

@@ -29,3 +29,9 @@ Questions.txt
 
 prompt.txt
 .blackboxcli/
+
+# Playwright MCP artifacts
+.playwright-mcp/
+
+# Local environment
+.env

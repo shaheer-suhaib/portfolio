@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { background: #0a0a0a; padding: 20px; font-family: var(--font-body); }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .swatch { border-radius: 10px; overflow: hidden; flex: 1 1 80px; min-width: 80px; }
+  .swatch-color { height: 64px; }
+  .swatch-label { padding: 6px 8px; background: rgba(255,255,255,0.04); }
+  .swatch-name { font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.9); letter-spacing: 0.04em; }
+  .swatch-value { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+  .group-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
+</style>
+</head>
+<body>
+  <div class="group-label">Accent</div>
+  <div class="row">
+    <div class="swatch">
+      <div class="swatch-color" style="background: linear-gradient(267deg, #da7c25 0.36%, #b923e1 100%);"></div>
+      <div class="swatch-label"><div class="swatch-name">Accent Gradient</div><div class="swatch-value">267deg orange→purple</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #b923e1;"></div>
+      <div class="swatch-label"><div class="swatch-name">Purple</div><div class="swatch-value">#b923e1</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #da7c25;"></div>
+      <div class="swatch-label"><div class="swatch-name">Orange</div><div class="swatch-value">#da7c25</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #c944f0;"></div>
+      <div class="swatch-label"><div class="swatch-name">Purple Hover</div><div class="swatch-value">#c944f0</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #e88a3a;"></div>
+      <div class="swatch-label"><div class="swatch-name">Orange Hover</div><div class="swatch-value">#e88a3a</div></div>
+    </div>
+  </div>
+
+  <div class="group-label">Backgrounds</div>
+  <div class="row">
+    <div class="swatch">
+      <div class="swatch-color" style="background: #0a0a0a; border: 1px solid rgba(255,255,255,0.08);"></div>
+      <div class="swatch-label"><div class="swatch-name">Page BG</div><div class="swatch-value">#0a0a0a</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: rgb(4,7,29);"></div>
+      <div class="swatch-label"><div class="swatch-name">Card BG</div><div class="swatch-value">rgb(4,7,29)</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: rgba(0,0,0,0.85); border: 1px solid rgba(255,255,255,0.08);"></div>
+      <div class="swatch-label"><div class="swatch-name">Glass Nav</div><div class="swatch-value">rgba(0,0,0,0.85)</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: rgba(185,35,225,0.10); border: 1px solid rgba(185,35,225,0.3);"></div>
+      <div class="swatch-label"><div class="swatch-name">Skill Pill</div><div class="swatch-value">purple 10%</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: rgba(185,35,225,0.05); border: 1px solid rgba(185,35,225,0.2);"></div>
+      <div class="swatch-label"><div class="swatch-name">Contact Row</div><div class="swatch-value">purple 5%</div></div>
+    </div>
+  </div>
+</body>
+</html>
