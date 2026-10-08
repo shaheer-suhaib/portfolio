@@ -3,7 +3,7 @@ import { motion, useInView } from "framer-motion";
 import Icon from "../Icons/Icon";
 import "./Contact.css";
 
-const EMAIL = "sh5suhaib.pk@gmail.com";
+const EMAIL = "shaheersuhaib.tech@gmail";
 // Allows overriding with custom FormSubmit token or alternate address via .env
 const FORMSUBMIT_ENDPOINT =
   import.meta.env.VITE_FORMSUBMIT_URL ||
