@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { background: #0a0a0a; padding: 20px; }
+  .row { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+  .photo-item { display: flex; flex-direction: column; gap: 8px; }
+  .label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .hero-img {
+    width: 120px; height: 120px; border-radius: 50%;
+    object-fit: cover; border: 3px solid rgba(185,35,225,0.3);
+    box-shadow: 0 10px 40px rgba(185,35,225,0.3);
+  }
+  .about-img {
+    width: 150px; height: 150px; border-radius: 20px;
+    object-fit: cover; border: 2px solid rgba(185,35,225,0.3);
+    box-shadow: 0 10px 40px rgba(185,35,225,0.2);
+  }
+  .nust-img {
+    width: 70px; height: 70px; border-radius: 50%;
+    object-fit: cover; background: rgba(255,255,255,0.08);
+  }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="photo-item">
+      <div class="label">Hero Photo</div>
+      <img class="hero-img" src="../assets/face.png" alt="Shaheer profile photo">
+    </div>
+    <div class="photo-item">
+      <div class="label">About Photo</div>
+      <img class="about-img" src="../assets/side_img.png" alt="Shaheer side photo">
+    </div>
+    <div class="photo-item">
+      <div class="label">NUST Logo</div>
+      <img class="nust-img" src="../assets/NUST.png" alt="NUST logo">
+    </div>
+  </div>
+</body>
+</html>

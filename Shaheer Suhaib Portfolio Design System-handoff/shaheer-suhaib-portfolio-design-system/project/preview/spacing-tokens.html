@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { background: #0a0a0a; padding: 20px; font-family: var(--font-body); }
+  .section { margin-bottom: 24px; }
+  .group-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 12px; }
+
+  /* ── Radius swatches ── */
+  .radii-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; }
+  .radius-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .radius-box {
+    background: rgba(185,35,225,0.12);
+    border: 1px solid rgba(185,35,225,0.30);
+    width: 56px; height: 56px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.7);
+    cursor: default;
+    transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .radius-box:hover {
+    background: rgba(185,35,225,0.28);
+    border-color: rgba(185,35,225,0.8);
+    box-shadow: 0 8px 24px rgba(185,35,225,0.40);
+    transform: translateY(-6px) scale(1.08);
+  }
+  .radius-name { font-family: var(--font-mono); font-size: 9px; color: rgba(255,255,255,0.4); text-align: center; }
+
+  /* ── Shadow swatches ── */
+  .shadow-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end; }
+  .shadow-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .shadow-box {
+    width: 76px; height: 56px;
+    background: rgb(4,7,29);
+    border-radius: 12px;
+    border: 1px solid rgba(185,35,225,0.12);
+    cursor: default;
+    transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .shadow-box:hover {
+    transform: translateY(-8px) scale(1.06);
+    border-color: rgba(185,35,225,0.55);
+  }
+  .shadow-box.s-btn-default     { box-shadow: 0 4px 15px rgba(185,35,225,0.30); }
+  .shadow-box.s-btn-default:hover { box-shadow: 0 12px 30px rgba(185,35,225,0.55); }
+
+  .shadow-box.s-btn-hover       { box-shadow: 0 8px 25px rgba(185,35,225,0.50); }
+  .shadow-box.s-btn-hover:hover { box-shadow: 0 16px 36px rgba(185,35,225,0.70); }
+
+  .shadow-box.s-card-hover      { box-shadow: 0 12px 30px rgba(185,35,225,0.40); }
+  .shadow-box.s-card-hover:hover { box-shadow: 0 20px 40px rgba(185,35,225,0.65); }
+
+  .shadow-box.s-hero-img        { box-shadow: 0 20px 60px rgba(185,35,225,0.30); }
+  .shadow-box.s-hero-img:hover  { box-shadow: 0 28px 70px rgba(185,35,225,0.55); }
+
+  .shadow-box.s-input-focus     { box-shadow: 0 0 20px rgba(185,35,225,0.20); }
+  .shadow-box.s-input-focus:hover { box-shadow: 0 0 32px rgba(185,35,225,0.50); }
+
+  .shadow-label { font-family: var(--font-mono); font-size: 9px; color: rgba(255,255,255,0.4); text-align: center; }
+
+  /* ── Divider ── */
+  .divider-demo {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(185,35,225,0.5), transparent);
+    margin: 8px 0 6px;
+  }
+
+  /* ── Border swatches ── */
+  .border-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .border-box {
+    padding: 8px 14px;
+    font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.7);
+    border-radius: 8px; cursor: default;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .border-box:hover {
+    transform: translateY(-4px);
+    background: rgba(185,35,225,0.08);
+  }
+</style>
+</head>
+<body>
+
+  <div class="section">
+    <div class="group-label">Border Radius — hover to feel the lift</div>
+    <div class="radii-row">
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:4px;">4px</div>
+        <div class="radius-name">focus</div>
+      </div>
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:8px;">8px</div>
+        <div class="radius-name">logo</div>
+      </div>
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:10px;">10px</div>
+        <div class="radius-name">item</div>
+      </div>
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:12px;">12px</div>
+        <div class="radius-name">detail</div>
+      </div>
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:15px;">15px</div>
+        <div class="radius-name">card</div>
+      </div>
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:20px;">20px</div>
+        <div class="radius-name">image</div>
+      </div>
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:28px;">28px</div>
+        <div class="radius-name">exp</div>
+      </div>
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:30px;">30px</div>
+        <div class="radius-name">skill</div>
+      </div>
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:50px;width:80px;">50px</div>
+        <div class="radius-name">pill</div>
+      </div>
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:50%;"></div>
+        <div class="radius-name">circle</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="group-label">Shadows — hover to intensify</div>
+    <div class="shadow-row">
+      <div class="shadow-item">
+        <div class="shadow-box s-btn-default"></div>
+        <div class="shadow-label">btn default</div>
+      </div>
+      <div class="shadow-item">
+        <div class="shadow-box s-btn-hover"></div>
+        <div class="shadow-label">btn hover</div>
+      </div>
+      <div class="shadow-item">
+        <div class="shadow-box s-card-hover"></div>
+        <div class="shadow-label">card hover</div>
+      </div>
+      <div class="shadow-item">
+        <div class="shadow-box s-hero-img"></div>
+        <div class="shadow-label">hero img</div>
+      </div>
+      <div class="shadow-item">
+        <div class="shadow-box s-input-focus"></div>
+        <div class="shadow-label">input focus</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="group-label">Section Divider Glow</div>
+    <div class="divider-demo"></div>
+    <div style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.3);">1px · transparent → purple 50% → transparent · used between all page sections</div>
+  </div>
+
+  <div class="section">
+    <div class="group-label">Borders — hover to preview</div>
+    <div class="border-row">
+      <div class="border-box" style="border:1px solid rgba(255,255,255,0.1);">divider / footer</div>
+      <div class="border-box" style="border:1px solid rgba(185,35,225,0.3);">skill pill</div>
+      <div class="border-box" style="border:2px solid rgba(185,35,225,1);">nav resume</div>
+      <div class="border-box" style="border:2px solid white;">outline btn</div>
+      <div class="border-box" style="border:4px solid rgba(185,35,225,0.3);">hero img</div>
+      <div class="border-box" style="border:2px solid rgba(185,35,225,0.6);">input focus</div>
+    </div>
+  </div>
+
+</body>
+</html>

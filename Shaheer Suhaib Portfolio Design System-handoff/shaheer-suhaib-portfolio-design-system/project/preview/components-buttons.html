@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { background: #0a0a0a; padding: 24px; }
+  .row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 24px; }
+  .label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 12px; }
+
+  /* Shared base */
+  button {
+    cursor: pointer; font-family: var(--font-body); font-weight: 600;
+    letter-spacing: -0.015em; border: none;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    position: relative;
+  }
+
+  /* ── Deep purple→midnight (like Explore Projects) ── */
+  .btn-purple {
+    padding: 14px 42px; border-radius: 50px; font-size: 15px; color: white;
+    background: linear-gradient(267deg, #b923e1 0%, #0d0620 100%);
+    box-shadow: 0 6px 28px rgba(185,35,225,0.45), 0 0 0 1px rgba(185,35,225,0.15) inset;
+  }
+  .btn-purple:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(185,35,225,0.65), 0 0 0 1px rgba(185,35,225,0.3) inset;
+    filter: brightness(1.12);
+  }
+
+  /* ── Deep orange→midnight ── */
+  .btn-orange {
+    padding: 14px 42px; border-radius: 50px; font-size: 15px; color: white;
+    background: linear-gradient(267deg, #da7c25 0%, #1a0800 100%);
+    box-shadow: 0 6px 28px rgba(218,124,37,0.45), 0 0 0 1px rgba(218,124,37,0.15) inset;
+  }
+  .btn-orange:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(218,124,37,0.65), 0 0 0 1px rgba(218,124,37,0.3) inset;
+    filter: brightness(1.12);
+  }
+
+  /* ── Full accent gradient→midnight ── */
+  .btn-gradient {
+    padding: 14px 42px; border-radius: 50px; font-size: 15px; color: white;
+    background: linear-gradient(267deg, #da7c25 0%, #b923e1 60%, #0d0620 100%);
+    box-shadow: 0 6px 28px rgba(185,35,225,0.40), 0 0 0 1px rgba(185,35,225,0.15) inset;
+  }
+  .btn-gradient:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(185,35,225,0.60), 0 0 0 1px rgba(185,35,225,0.3) inset;
+    filter: brightness(1.1);
+  }
+
+  /* ── Navy→midnight ── */
+  .btn-navy {
+    padding: 14px 42px; border-radius: 50px; font-size: 15px; color: white;
+    background: linear-gradient(267deg, #1a3a8f 0%, #04071d 100%);
+    box-shadow: 0 6px 28px rgba(26,58,143,0.50), 0 0 0 1px rgba(100,140,255,0.15) inset;
+  }
+  .btn-navy:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(26,58,143,0.70), 0 0 0 1px rgba(100,140,255,0.3) inset;
+    filter: brightness(1.15);
+  }
+
+  /* ── Teal→midnight ── */
+  .btn-teal {
+    padding: 14px 42px; border-radius: 50px; font-size: 15px; color: white;
+    background: linear-gradient(267deg, #0fa88a 0%, #041a14 100%);
+    box-shadow: 0 6px 28px rgba(15,168,138,0.45), 0 0 0 1px rgba(15,168,138,0.15) inset;
+  }
+  .btn-teal:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(15,168,138,0.65), 0 0 0 1px rgba(15,168,138,0.3) inset;
+    filter: brightness(1.12);
+  }
+
+  /* ── Show More — orange glow, different from the rest ── */
+  .btn-show-more {
+    padding: 14px 42px; border-radius: 50px; font-size: 15px; color: white;
+    background: linear-gradient(267deg, #e88a3a 0%, #3a1200 100%);
+    box-shadow: 0 6px 28px rgba(218,124,37,0.50), 0 0 0 1px rgba(218,124,37,0.2) inset;
+    display: inline-flex; align-items: center; gap: 12px;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .btn-show-more:hover {
+    transform: translateY(-3px); gap: 24px;
+    box-shadow: 0 12px 36px rgba(218,124,37,0.70), 0 0 0 1px rgba(218,124,37,0.35) inset;
+    filter: brightness(1.12);
+  }
+
+  /* ── Small pills ── */
+  .btn-sm {
+    padding: 7px 18px; border-radius: 50px; font-size: 12px; color: white;
+    background: linear-gradient(267deg, #b923e1 0%, #0d0620 100%);
+  }
+  .btn-sm:hover { transform: translateY(-2px); filter: brightness(1.15); }
+
+  .btn-sm-orange {
+    padding: 7px 18px; border-radius: 50px; font-size: 12px; color: white;
+    background: linear-gradient(267deg, #da7c25 0%, #1a0800 100%);
+  }
+  .btn-sm-orange:hover { transform: translateY(-2px); filter: brightness(1.15); }
+
+  .btn-sm-teal {
+    padding: 7px 18px; border-radius: 50px; font-size: 12px; color: white;
+    background: linear-gradient(267deg, #0fa88a 0%, #041a14 100%);
+  }
+  .btn-sm-teal:hover { transform: translateY(-2px); filter: brightness(1.15); }
+</style>
+</head>
+<body>
+  <div class="label">Large CTAs — deep color→midnight gradient with ambient glow</div>
+  <div class="row">
+    <button class="btn-purple">Connect With Me</button>
+    <button class="btn-orange">My Resume</button>
+    <button class="btn-gradient">Send Message</button>
+  </div>
+
+  <div class="row">
+    <button class="btn-navy">View Portfolio</button>
+    <button class="btn-teal">Explore Projects</button>
+  </div>
+
+  <div class="label">Show More — orange glow, distinct from primary CTAs</div>
+  <div class="row">
+    <button class="btn-show-more">show more <span>→</span></button>
+  </div>
+
+  <div class="label">Small pills — same treatment, compact</div>
+  <div class="row">
+    <button class="btn-sm">LangGraph</button>
+    <button class="btn-sm-orange">React</button>
+    <button class="btn-sm-teal">Full Stack</button>
+    <button class="btn-sm">Python</button>
+    <button class="btn-sm-orange">View Project</button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { background: #0a0a0a; padding: 20px; }
+  .label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 10px; }
+  .section { margin-bottom: 20px; }
+
+  /* About-style skill pills */
+  .pills { display: flex; flex-wrap: wrap; gap: 12px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: 30px;
+    background: rgba(185,35,225,0.1); border: 2px solid rgba(185,35,225,0.3);
+    font-family: var(--font-body); font-size: 13px; font-weight: 500;
+    letter-spacing: -0.015em; color: white; transition: all 0.3s;
+  }
+  .pill:hover { background: rgba(185,35,225,0.25); border-color: rgba(185,35,225,0.7); transform: translateY(-3px); }
+  .pill img { width: 20px; height: 20px; object-fit: contain; }
+
+  /* Experience-section skill items */
+  .items { display: flex; flex-wrap: wrap; gap: 8px; }
+  .item {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px; min-height: 44px; border-radius: 8px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.08);
+    font-family: var(--font-body); font-size: 13px; font-weight: 500;
+    color: white; transition: all 0.3s;
+  }
+  .item:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+  .item img { width: 28px; height: 28px; object-fit: contain; }
+</style>
+</head>
+<body>
+  <div class="section">
+    <div class="label">About Section — Purple Pill Style</div>
+    <div class="pills">
+      <div class="pill"><img src="../assets/icons/HTML.png" alt="">Html&amp;Css</div>
+      <div class="pill"><img src="../assets/icons/React.png" alt="">React</div>
+      <div class="pill"><img src="../assets/icons/Langgraph.svg" alt="">LangGraph</div>
+      <div class="pill">CrewAi</div>
+      <div class="pill"><img src="../assets/icons/Langchain.svg" alt="">LangChain</div>
+      <div class="pill"><img src="../assets/icons/tensorflow-96.png" alt="">TensorFlow</div>
+      <div class="pill"><img src="../assets/icons/python-96.png" alt="">Python</div>
+      <div class="pill"><img src="../assets/icons/java-96.png" alt="">Java</div>
+      <div class="pill"><img src="../assets/icons/c-96.png" alt="">C++</div>
+      <div class="pill"><img src="../assets/icons/Git.svg" alt="">Git</div>
+      <div class="pill"><img src="../assets/icons/Github.svg" alt="">GitHub</div>
+      <div class="pill"><img src="../assets/icons/Docker.svg" alt="">Docker</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">Skills Section — Dark Chip Style (hover reveals description)</div>
+    <div class="items">
+      <div class="item"><img src="../assets/icons/python-96.png" alt="">Python</div>
+      <div class="item"><img src="../assets/icons/java-96.png" alt="">Java</div>
+      <div class="item"><img src="../assets/icons/c-96.png" alt="">C++</div>
+      <div class="item"><img src="../assets/icons/Langchain.svg" alt="">LangChain</div>
+      <div class="item"><img src="../assets/icons/Langgraph.svg" alt="">LangGraph</div>
+      <div class="item"><img src="../assets/icons/tensorflow-96.png" alt="">TensorFlow</div>
+      <div class="item"><img src="../assets/icons/crewai.png" alt="">CrewAI</div>
+      <div class="item"><img src="../assets/icons/React.png" alt="">ReactJS</div>
+      <div class="item"><img src="../assets/icons/Git.svg" alt="">Git</div>
+      <div class="item"><img src="../assets/icons/Github.svg" alt="">GitHub</div>
+      <div class="item"><img src="../assets/icons/Docker.svg" alt="">Docker</div>
+    </div>
+  </div>
+</body>
+</html>

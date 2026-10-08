@@ -1,11 +1,27 @@
-.particle-background {
+.page-ground {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.3;
+  background: var(--bg);
 }
 
+/* Fine dot grid, faded out toward the bottom so it never fights content */
+.page-ground__grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px,
+                    rgba(255, 255, 255, 0.055) 1px, transparent 0);
+  background-size: 34px 34px;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 62%);
+  mask-image: linear-gradient(180deg, #000 0%, transparent 62%);
+}
+
+/* Two soft accent washes — the only place the old glow survives */
+.page-ground__wash {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60vw 46vh at 12% -6%, rgba(139, 92, 246, 0.16), transparent 68%),
+    radial-gradient(48vw 40vh at 96% 8%, rgba(240, 168, 104, 0.07), transparent 66%);
+}

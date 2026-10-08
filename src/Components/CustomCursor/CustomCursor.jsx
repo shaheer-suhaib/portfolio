@@ -1,92 +1,57 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import './CustomCursor.css';
 
+const INTERACTIVE = 'a, button, [role="button"], input, textarea, .work-item, .project-card, .skill-item, .contact-detail';
+
 const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [pos, setPos] = useState({ x: -100, y: -100 });
   const [isHovering, setIsHovering] = useState(false);
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    const updateMousePosition = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    const handleMouseEnter = (e) => {
-      if (
-        e.target.tagName === 'BUTTON' ||
-        e.target.tagName === 'A' ||
-        e.target.closest('button') ||
-        e.target.closest('a') ||
-        e.target.closest('.work-img') ||
-        e.target.closest('.skill-name') ||
-        e.target.closest('.project-card') ||
-        e.target.closest('.show-more') ||
-        e.target.closest('.nav-connect') ||
-        e.target.closest('.nav-resume') ||
-        e.target.closest('.connect-me') ||
-        e.target.closest('.resume')
-      ) {
-        setIsHovering(true);
-      }
-    };
-
-    const handleMouseLeave = (e) => {
-      if (
-        e.target.tagName === 'BUTTON' ||
-        e.target.tagName === 'A' ||
-        e.target.closest('button') ||
-        e.target.closest('a') ||
-        e.target.closest('.work-img') ||
-        e.target.closest('.skill-name') ||
-        e.target.closest('.project-card') ||
-        e.target.closest('.show-more') ||
-        e.target.closest('.nav-connect') ||
-        e.target.closest('.nav-resume') ||
-        e.target.closest('.connect-me') ||
-        e.target.closest('.resume')
-      ) {
-        setIsHovering(false);
-      }
-    };
-
-    window.addEventListener('mousemove', updateMousePosition);
-    document.addEventListener('mouseenter', handleMouseEnter, true);
-    document.addEventListener('mouseleave', handleMouseLeave, true);
-
-    return () => {
-      window.removeEventListener('mousemove', updateMousePosition);
-      document.removeEventListener('mouseenter', handleMouseEnter, true);
-      document.removeEventListener('mouseleave', handleMouseLeave, true);
-    };
+    // Pointer-based cursor only makes sense for a real, hoverable pointer.
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const sync = () => setEnabled(mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
   }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
+
+    const move = (e) => {
+      setPos({ x: e.clientX, y: e.clientY });
+      // e.target can be a non-Element node (text, document), which has no
+      // .closest — guard before calling it.
+      const el = e.target instanceof Element ? e.target : null;
+      setIsHovering(Boolean(el && el.closest(INTERACTIVE)));
+    };
+
+    const leave = () => setPos({ x: -100, y: -100 });
+
+    window.addEventListener('pointermove', move, { passive: true });
+    document.addEventListener('pointerleave', leave);
+    return () => {
+      window.removeEventListener('pointermove', move);
+      document.removeEventListener('pointerleave', leave);
+    };
+  }, [enabled]);
+
+  if (!enabled) return null;
 
   return (
     <>
       <motion.div
         className={`cursor-dot ${isHovering ? 'hover' : ''}`}
-        animate={{
-          x: mousePosition.x,
-          y: mousePosition.y,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 1000,
-          damping: 10,
-          mass: 0.5,
-        }}
+        animate={{ x: pos.x, y: pos.y }}
+        transition={{ type: 'spring', stiffness: 1400, damping: 60, mass: 0.3 }}
       />
       <motion.div
-        className={`cursor-outline ${isHovering ? 'hover' : ''}`}
-        animate={{
-          x: mousePosition.x,
-          y: mousePosition.y,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 500,
-          damping: 10,
-          mass: 0.8,
-        }}
+        className={`cursor-ring ${isHovering ? 'hover' : ''}`}
+        animate={{ x: pos.x, y: pos.y }}
+        transition={{ type: 'spring', stiffness: 260, damping: 26, mass: 0.6 }}
       />
     </>
   );

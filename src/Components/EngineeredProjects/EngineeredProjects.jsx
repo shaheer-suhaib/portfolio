@@ -86,7 +86,7 @@ const EngineeredProjects = () => {
         </motion.div>
 
         <div className="projects-grid">
-          {engineered_projects_data.map((project, index) => (
+          {engineered_projects_data.map((project) => (
             <motion.div
               key={project.w_no}
               className="project-card"

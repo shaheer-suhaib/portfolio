@@ -1,155 +1,160 @@
-import React from "react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import "./experience.css";
-import MovingBorders from "./MovingBorders";
 import SkillIcon from "../SkillIcons/SkillIcon";
 import psychiatraiLogo from "../../assets/psychiatrai_logo.jfif";
 import careLogo from "../../assets/care.jfif";
+
+const roles = [
+  {
+    period: "2025 — Present",
+    title: "Full Stack Engineer",
+    company: "Zapply",
+    stack: ["JavaScript", "React", "Express", "Chrome Extensions", "Docker", "Git", "Cloudflare"],
+    points: [
+      "Helped in development of autofill extension on 300+ websites.",
+      "Helped automating QA testing reducing testing time by more than 80%.",
+      "Helped extension product for Chrome,Firefox and Safari Browsers.",
+      "Helped executives by leading 3 developers under me.",
+    ],
+  },
+  {
+    period: "2025",
+    title: "Full Stack AI Intern",
+    company: "Psychiatrai",
+    logo: psychiatraiLogo,
+    stack: ["LangGraph", "LangChain", "React", "Python"],
+    points: [
+      "Developed a mental-health chatbot grounded in Cognitive Behavioural Therapy to run structured therapeutic sessions.",
+      "Engineered the backend for CBT conversation flows with LangGraph nodes and LangChain components for context-aware interactions.",
+      "Deployed LangGraph on self-hosted infrastructure via LangGraph Server APIs and wired it to responsive React front-ends.",
+    ],
+  },
+  {
+    period: "2025",
+    title: "AI / ML Intern",
+    company: "Care",
+    logo: careLogo,
+    stack: ["Model research", "Medical imaging", "Technical writing"],
+    points: [
+      "Ran model research and selection for machine-learning applications in the healthcare domain.",
+      "Evaluated the fetal CLIP architecture for medical imaging analysis.",
+      "Documented findings, performance metrics, selection criteria and recommendations.",
+    ],
+  },
+];
 
 const skillCategories = [
   { title: "Languages", skills: ["Python", "Java", "C++", "JavaScript"] },
   { title: "Frontend & UI", skills: ["HTML5", "CSS3", "React.js"] },
   {
-    title: "Backend & AI Frameworks",
-    skills: [
-      "Node.js",
-      "Express.js",
-      "LangChain",
-      "LangGraph",
-      "TensorFlow",
-      "CrewAI",
-    ],
+    title: "Backend & AI",
+    skills: ["Node.js", "Express.js", "LangChain", "LangGraph", "TensorFlow", "CrewAI"],
   },
-  {
-    title: "Databases",
-    skills: ["MongoDB", "SQL Server", "MySQL", "Supabase", "Redis"],
-  },
-  {
-    title: "Cloud, Deployment & DevOps",
-    skills: ["Docker", "Vercel", "Render", "Microsoft Azure"],
-  },
-  {
-    title: "Version Control & Collaboration",
-    skills: ["Git", "GitHub"],
-  },
+  { title: "Databases", skills: ["MongoDB", "SQL Server", "MySQL", "Supabase", "Redis"] },
+  { title: "Cloud & DevOps", skills: ["Docker", "Vercel", "Render", "Microsoft Azure"] },
+  { title: "Version control", skills: ["Git", "GitHub"] },
 ];
 
-const experience = () => {
+const Experience = () => {
+  const expRef = useRef(null);
+  const skillRef = useRef(null);
+  const expIn = useInView(expRef, { once: true, margin: "-120px" });
+  const skillIn = useInView(skillRef, { once: true, margin: "-120px" });
+
   return (
-    <div className="top-container">
-      <div className="columns-container">
-        <div className="skill-container">
-          <h2 className="skills-title">SKILLS</h2>
-          <div className="skills-list">
-            {skillCategories.map((category) => (
-              <div className="skill-category" key={category.title}>
-                <h3 className="category-title">{category.title}:</h3>
-                <div className="skill-items">
-                  {category.skills.map((skill) => (
-                    <span className="skill-item" key={skill}>
-                      <SkillIcon name={skill} className="skill-icon" />
-                      <span>{skill}</span>
-                    </span>
-                  ))}
+    <>
+      <section id="experience" className="section exp" ref={expRef}>
+        <div className="container">
+          <motion.div
+            className="sec-head"
+            initial={{ opacity: 0, y: 20 }}
+            animate={expIn ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="sec-index">03 &mdash; Experience</span>
+            <h2 className="sec-title">Where I&rsquo;ve been shipping</h2>
+          </motion.div>
+
+          <ol className="exp__list">
+            {roles.map((role, i) => (
+              <motion.li
+                className="exp__row"
+                key={role.title + role.company}
+                initial={{ opacity: 0, y: 24 }}
+                animate={expIn ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className="exp__period">
+                  <span className="eyebrow">{role.period}</span>
                 </div>
-              </div>
+
+                <div className="exp__card">
+                  <header className="exp__cardHead">
+                    <div>
+                      <h3 className="exp__role">{role.title}</h3>
+                      <p className="exp__company">{role.company}</p>
+                    </div>
+                    {role.logo && (
+                      <img className="exp__logo" src={role.logo} alt={`${role.company} logo`} />
+                    )}
+                  </header>
+
+                  <ul className="exp__points">
+                    {role.points.map((p) => (
+                      <li key={p}>{p}</li>
+                    ))}
+                  </ul>
+
+                  <ul className="exp__stack">
+                    {role.stack.map((s) => (
+                      <li key={s}>{s}</li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section id="stack" className="section stack" ref={skillRef}>
+        <div className="container">
+          <motion.div
+            className="sec-head"
+            initial={{ opacity: 0, y: 20 }}
+            animate={skillIn ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="sec-index">04 &mdash; Stack</span>
+            <h2 className="sec-title">Tools I reach for</h2>
+          </motion.div>
+
+          <div className="stack__grid">
+            {skillCategories.map((category, i) => (
+              <motion.div
+                className="stack__group"
+                key={category.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={skillIn ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.55, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <h3 className="stack__groupTitle eyebrow">{category.title}</h3>
+                <ul className="stack__items">
+                  {category.skills.map((skill) => (
+                    <li className="skill-item" key={skill}>
+                      <SkillIcon name={skill} className="skill-item__icon" />
+                      <span>{skill}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
             ))}
           </div>
         </div>
-        <div className="experience-container">
-          <h2 className="experience-title">EXPERIENCE</h2>
-          <div className="experience-item">
-            <div className="experience-date">2025 - Present</div>
-            <MovingBorders
-              duration={Math.floor(Math.random() * 10000) + 10000}
-              borderRadius="1.75rem"
-              style={{
-                background: "rgb(4,7,29)",
-                backgroundColor:
-                  "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-                borderRadius: `calc(1.75rem* 0.96)`,
-              }}
-              className="experience-card"
-            >
-              <div className="title-container">
-                <h2 className="title">Full Stack Engineer</h2>
-              </div>
-              <div className="company-name">Zapply</div>
-              <p className="description">
-                • Tech Stack: JavaScript, Chrome Extensions, DOM, Mutation Observers, Communication API, Git
-                • Develop and optimize autofill functionality for multiple platforms, leveraging DOM queries, selectors, and runtime scripts to enhance efficiency.
-                • Implement dynamic field detection using Mutation Observers and message passing APIs to ensure accurate real-time form filling.
-                • Refactor platforms codes, resolve large-scale merge conflicts, and prepare pull requests.
-                • Workflow optimizations with internal tools to ensure reliability and process accuracy.
-              </p>
-            </MovingBorders>
-          </div>
-          <div className="experience-item">
-            <div className="experience-date">2025</div>
-            <MovingBorders
-              duration={Math.floor(Math.random() * 10000) + 10000}
-              borderRadius="1.75rem"
-              style={{
-                background: "rgb(4,7,29)",
-                backgroundColor:
-                  "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-                borderRadius: `calc(1.75rem* 0.96)`,
-              }}
-              className="experience-card"
-            >
-              <div className="title-container">
-                <h2 className="title">Full Stack AI Intern</h2>
-                <div className="company-logo">
-                  <img src={psychiatraiLogo} alt="Psychiatrai Logo" />
-                </div>
-              </div>
-              <div className="company-name">Psychiatrai</div>
-              <p className="description">
-                • Developed a mental health chatbot leveraging Cognitive
-                Behavioral Therapy principles to facilitate structured
-                therapeutic sessions and provide AI-powered guidance. •
-                Engineered backend architecture for CBT conversation flows using
-                LangGraph nodes and LangChain components for context-aware
-                interactions. • Deployed LangGraph on self-hosted platforms
-                utilizing LangGraph Server APIs and integrated backend services
-                with React.js frontends featuring responsive UIs
-              </p>
-            </MovingBorders>
-          </div>
-          <div className="experience-item">
-            <div className="experience-date">2025</div>
-            <MovingBorders
-              duration={Math.floor(Math.random() * 10000) + 10000}
-              borderRadius="1.75rem"
-              style={{
-                background: "rgb(4,7,29)",
-                backgroundColor:
-                  "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-                borderRadius: `calc(1.75rem* 0.96)`,
-              }}
-              className="experience-card"
-            >
-              <div className="title-container">
-                <h2 className="title">Ai/Ml intern</h2>
-                <div className="company-logo">
-                  <img src={careLogo} alt="Care Logo" />
-                </div>
-              </div>
-              <div className="company-name">Care</div>
-              <p className="description">
-                Conducted comprehensive model research and selection for machine
-                learning applications in healthcare domain. • Researched and
-                evaluated fetal CLIP model architecture for medical imaging
-                analysis. • Documented research findings and model performance
-                metrics for fetal CLIP model implementation. • Compiled
-                technical documentation detailing model selection criteria,
-                evaluation results, and recommendations
-              </p>
-            </MovingBorders>
-          </div>
-        </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 };
 
-export default experience;
+export default Experience;

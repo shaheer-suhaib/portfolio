@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shaheer Suhaib — Portfolio</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #0a0a0a; color: white; font-family: 'Manrope', sans-serif; overflow-x: hidden; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* Particle canvas */
+  #particle-canvas {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  }
+
+  .scroll-progress {
+    position: fixed; top: 0; left: 0; height: 3px; z-index: 9999;
+    background: linear-gradient(267deg, #da7c25, #b923e1);
+    transition: width 0.1s;
+  }
+
+  /* Custom cursor */
+  .custom-cursor {
+    position: fixed; width: 20px; height: 20px; border-radius: 50%;
+    background: rgba(185,35,225,0.5); pointer-events: none; z-index: 9999;
+    transform: translate(-50%,-50%); transition: transform 0.1s, width 0.2s, height 0.2s;
+    mix-blend-mode: difference;
+  }
+
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: rgba(0,0,0,0.5); }
+  ::-webkit-scrollbar-thumb { background: linear-gradient(267deg,#da7c25,#b923e1); border-radius: 5px; }
+  ::selection { background: rgba(185,35,225,0.35); color: white; }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.55; transform: scale(1.06); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; } 50% { opacity: 0; }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+  @keyframes moveArrow {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(8px); }
+  }
+
+  .fade-up { animation: fadeUp 0.6s ease both; }
+  .fade-in { animation: fadeIn 0.6s ease both; }
+
+  section { scroll-margin-top: 80px; }
+
+  /* Divider line */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(185,35,225,0.5), transparent);
+    margin: 0 auto;
+    max-width: 200px;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+<div class="scroll-progress" id="scrollBar"></div>
+<div class="custom-cursor" id="cursor"></div>
+
+<div id="root" style="position:relative;z-index:1;"></div>
+
+<script type="text/babel">
+
+/* ─── NAVIGATION ─── */
+function Nav({ activeSection, setActiveSection }) {
+  const [scrolled, setScrolled] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const links = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About Me' },
+    { id: 'work', label: 'Portfolio' },
+    { id: 'contact', label: 'Contact' },
+  ];
+
+  const navStyle = {
+    position: 'sticky', top: 0, zIndex: 1000,
+    display: 'flex', alignItems: 'center',
+    padding: scrolled ? '14px 0' : '22px 0',
+    background: scrolled ? 'rgba(0,0,0,0.97)' : 'rgba(0,0,0,0.85)',
+    backdropFilter: 'blur(20px)',
+    borderBottom: '1px solid rgba(255,255,255,0.1)',
+    boxShadow: scrolled ? '0 4px 20px rgba(0,0,0,0.3)' : '0 2px 20px rgba(0,0,0,0.1)',
+    transition: 'all 0.3s ease',
+  };
+
+  const innerStyle = {
+    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+    width: '100%', maxWidth: '1400px', margin: '0 auto', padding: '0 clamp(24px,5vw,80px)',
+  };
+
+  return (
+    <nav style={navStyle}>
+      <div style={innerStyle}>
+        {/* Hamburger */}
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          style={{ display: 'none', flexDirection: 'column', gap: 4, background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}
+          
+          aria-label="Menu"
+        >
+          {[0,1,2].map(i => (
+            <div key={i} style={{ width: 26, height: 3, background: 'white', borderRadius: 3 }} />
+          ))}
+        </button>
+
+        {/* Desktop nav */}
+        <ul style={{ display: 'flex', alignItems: 'center', gap: 'clamp(24px,4vw,56px)', listStyle: 'none' }}>
+          {links.map(link => (
+            <li key={link.id} style={{ position: 'relative' }}>
+              <a
+                href={`#${link.id}`}
+                onClick={() => setActiveSection(link.id)}
+                style={{
+                  fontFamily: 'Manrope, sans-serif', fontSize: 'clamp(14px,1rem,18px)',
+                  fontWeight: 500, color: activeSection === link.id ? '#b923e1' : 'white',
+                  textDecoration: 'none', letterSpacing: '-0.015em',
+                  transition: 'color 0.3s',
+                }}
+                onMouseEnter={e => { if(activeSection !== link.id) e.target.style.color = '#b923e1'; }}
+                onMouseLeave={e => { if(activeSection !== link.id) e.target.style.color = 'white'; }}
+              >
+                {link.label}
+              </a>
+              {activeSection === link.id && (
+                <div style={{
+                  position: 'absolute', bottom: -8, left: '50%', transform: 'translateX(-50%)',
+                  width: 28, height: 3, borderRadius: 2,
+                  background: 'linear-gradient(267deg,#da7c25,#b923e1)',
+                }} />
+              )}
+            </li>
+          ))}
+        </ul>
+
+        <button
+          style={{
+            padding: 'clamp(10px,1vw,16px) clamp(24px,2vw,40px)', borderRadius: 50,
+            background: 'transparent', border: '2px solid #b923e1',
+            fontFamily: 'Manrope, sans-serif', fontSize: 'clamp(13px,0.9rem,16px)',
+            fontWeight: 600, color: 'white', cursor: 'pointer', letterSpacing: '-0.015em',
+            transition: 'all 0.3s',
+          }}
+          onMouseEnter={e => { e.target.style.background = '#b923e1'; }}
+          onMouseLeave={e => { e.target.style.background = 'transparent'; }}
+        >
+          Resume
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '65%', height: '100vh',
+          background: 'rgba(0,0,0,0.97)', padding: '70px 24px',
+          display: 'flex', flexDirection: 'column', gap: 28, zIndex: 2000,
+        }}>
+          {links.map(link => (
+            <a key={link.id} href={`#${link.id}`}
+              onClick={() => { setActiveSection(link.id); setMobileOpen(false); }}
+              style={{ fontFamily: 'Manrope', fontSize: 22, fontWeight: 600, color: 'white', textDecoration: 'none' }}
+            >{link.label}</a>
+          ))}
+          <button style={{
+            marginTop: 20, padding: '14px 24px', borderRadius: 50, border: '2px solid #b923e1',
+            background: 'transparent', color: 'white', fontFamily: 'Manrope', fontSize: 17, fontWeight: 600, cursor: 'pointer',
+          }}>Resume</button>
+        </div>
+      )}
+    </nav>
+  );
+}
+
+/* ─── HERO ─── */
+function Hero() {
+  const [displayText, setDisplayText] = React.useState('');
+  const fullText = "I'm software engineer based in pakistan";
+  const part1 = "I'm software engineer";
+
+  React.useEffect(() => {
+    let i = 0;
+    const t = setInterval(() => {
+      if (i <= fullText.length) { setDisplayText(fullText.slice(0, i)); i++; }
+      else clearInterval(t);
+    }, 50);
+    return () => clearInterval(t);
+  }, []);
+
+  const rest = displayText.slice(part1.length);
+
+  return (
+    <section id="home" style={{
+      display: 'flex', flexDirection: 'column', alignItems: 'center',
+      gap: 'clamp(28px,4vw,56px)', padding: 'clamp(60px,10vw,130px) clamp(24px,5vw,80px)',
+      minHeight: '100vh', justifyContent: 'center', position: 'relative',
+      animation: 'fadeIn 0.8s ease both',
+    }}>
+      {/* Radial glow */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        background: 'radial-gradient(circle at 30% 50%, rgba(185,35,225,0.1) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(218,124,37,0.1) 0%, transparent 50%)',
+      }} />
+
+      {/* Profile photo */}
+      <div className="fade-up" style={{ position: 'relative', zIndex: 1, animationDelay: '0.1s' }}>
+        <div style={{
+          position: 'absolute', inset: -12, borderRadius: '50%',
+          background: 'linear-gradient(267deg,#da7c25,#b923e1)',
+          opacity: 0.3, filter: 'blur(20px)', zIndex: -1,
+          animation: 'pulse-glow 3s ease-in-out infinite',
+        }} />
+        <img
+          src="../../assets/face.png"
+          alt="Shaheer Suhaib"
+          style={{
+            width: 'clamp(220px,36vw,480px)', height: 'clamp(220px,36vw,480px)',
+            borderRadius: '50%', objectFit: 'cover',
+            border: '4px solid rgba(185,35,225,0.3)',
+            boxShadow: '0 20px 60px rgba(185,35,225,0.3)',
+            transition: 'transform 0.3s, box-shadow 0.3s',
+            display: 'block',
+          }}
+          onMouseEnter={e => { e.target.style.transform = 'scale(1.04)'; e.target.style.boxShadow = '0 25px 70px rgba(185,35,225,0.5)'; }}
+          onMouseLeave={e => { e.target.style.transform = 'scale(1)'; e.target.style.boxShadow = '0 20px 60px rgba(185,35,225,0.3)'; }}
+        />
+      </div>
+
+      {/* Headline */}
+      <h1 style={{
+        fontFamily: "'Fraunces', serif", fontSize: 'clamp(36px,7vw,100px)',
+        textAlign: 'center', maxWidth: 1200, zIndex: 1,
+        lineHeight: 0.95, letterSpacing: '-0.04em',
+        fontVariationSettings: '"opsz" 144, "SOFT" 80', fontStyle: 'italic', fontWeight: 500,
+        animation: 'fadeUp 0.8s 0.3s ease both',
+      }}>
+        <span style={{
+          background: 'linear-gradient(267deg,#da7c25 0.36%,#b923e1 100%)',
+          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+          display: 'block', marginBottom: '0.06em',
+        }}>
+          {displayText.length >= part1.length ? part1 : displayText}
+        </span>
+        <span style={{
+          background: 'linear-gradient(267deg,#da7c25 0.36%,#b923e1 100%)',
+          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+          display: 'block',
+        }}>
+          {rest}
+          <span style={{ animation: 'blink 0.8s infinite', color: 'rgba(185,35,225,0.8)', WebkitTextFillColor: 'rgba(185,35,225,0.8)' }}>|</span>
+        </span>
+      </h1>
+
+      {/* CTAs */}
+      <div style={{ display: 'flex', gap: 36, flexWrap: 'wrap', justifyContent: 'center', zIndex: 1, animation: 'fadeUp 0.8s 0.6s ease both' }}>
+        <a href="#contact" style={{
+          padding: 'clamp(14px,1.2vw,22px) clamp(36px,3vw,58px)', borderRadius: 50,
+          background: 'linear-gradient(267deg,#da7c25 0.36%,#b923e1 100%)',
+          fontFamily: 'Manrope', fontSize: 'clamp(15px,1.1rem,22px)', fontWeight: 600,
+          color: 'white', textDecoration: 'none', display: 'inline-block',
+          boxShadow: '0 4px 15px rgba(185,35,225,0.3)', transition: 'all 0.3s',
+          letterSpacing: '-0.015em',
+        }}
+          onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.boxShadow = '0 8px 25px rgba(185,35,225,0.5)'; }}
+          onMouseLeave={e => { e.target.style.transform = ''; e.target.style.boxShadow = '0 4px 15px rgba(185,35,225,0.3)'; }}
+        >Connect With Me</a>
+        <button style={{
+          padding: 'clamp(14px,1.2vw,22px) clamp(36px,3vw,58px)', borderRadius: 50,
+          border: '2px solid white', background: 'transparent',
+          fontFamily: 'Manrope', fontSize: 'clamp(15px,1.1rem,22px)', fontWeight: 600,
+          color: 'white', cursor: 'pointer', letterSpacing: '-0.015em', transition: 'all 0.3s',
+        }}
+          onMouseEnter={e => { e.currentTarget.style.background = 'white'; e.currentTarget.style.color = 'black'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'white'; e.currentTarget.style.transform = ''; }}
+        >My Resume</button>
+      </div>
+    </section>
+  );
+}
+
+/* ─── ABOUT ─── */
+function About() {
+  const skills = [
+    { name: 'Html&Css', icon: '../../assets/icons/HTML.png' },
+    { name: 'React', icon: '../../assets/icons/React.png' },
+    { name: 'LangGraph', icon: '../../assets/icons/Langgraph.svg' },
+    { name: 'CrewAi', icon: null },
+    { name: 'LangChain', icon: '../../assets/icons/Langchain.svg' },
+    { name: 'TensorFlow', icon: '../../assets/icons/tensorflow-96.png' },
+    { name: 'Python', icon: '../../assets/icons/python-96.png' },
+    { name: 'Java', icon: '../../assets/icons/java-96.png' },
+    { name: 'C++', icon: '../../assets/icons/c-96.png' },
+    { name: 'Git', icon: '../../assets/icons/Git.svg' },
+    { name: 'GitHub', icon: '../../assets/icons/Github.svg' },
+    { name: 'Docker', icon: '../../assets/icons/Docker.svg' },
+    { name: 'Javascript', icon: '../../assets/icons/Javascript.svg' },
+  ];
+
+  return (
+    <section id="about" style={{
+      padding: 'clamp(50px,8vw,120px) clamp(24px,5vw,80px)',
+      display: 'flex', flexDirection: 'column', gap: 'clamp(40px,6vw,80px)',
+      alignItems: 'center', maxWidth: 'clamp(1200px,92vw,1600px)', margin: '0 auto', width: '100%',
+    }}>
+      <div className="section-divider" style={{ width: '100%' }} />
+
+      {/* Title */}
+      <h2 style={{
+        fontFamily: "'Fraunces', serif", fontSize: 'clamp(48px,7vw,120px)',
+        fontWeight: 500, textAlign: 'center', lineHeight: 0.95, letterSpacing: '-0.03em',
+        fontVariationSettings: '"opsz" 144, "SOFT" 50',
+        background: 'linear-gradient(267deg,#da7c25 0.36%,#b923e1 100%)',
+        WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+      }}>About me</h2>
+
+      {/* Bio */}
+      <p style={{
+        fontSize: 'clamp(17px,1.3rem,28px)', lineHeight: 1.75,
+        color: 'rgba(255,255,255,0.88)', textAlign: 'center',
+        maxWidth: 860, fontWeight: 400, letterSpacing: '-0.005em',
+      }}>
+        I am a passionate and curious learner currently navigating the exciting world of engineering and software development. I love exploring new technologies — from embedded systems and machine learning to full-stack and app development — and bringing ideas to life through hands-on projects.
+      </p>
+
+      {/* Image + Skills + Stats */}
+      <div style={{ display: 'flex', gap: 56, alignItems: 'center', flexWrap: 'wrap', width: '100%', justifyContent: 'center' }}>
+        {/* Photo */}
+        <img
+          src="../../assets/side_img.png" alt="Shaheer"
+          style={{
+            width: 'clamp(220px,28vw,380px)', height: 'clamp(220px,28vw,380px)',
+            borderRadius: 20, objectFit: 'cover',
+            border: '3px solid rgba(185,35,225,0.3)',
+            boxShadow: '0 10px 40px rgba(185,35,225,0.2)',
+            transition: 'transform 0.3s, box-shadow 0.3s', flexShrink: 0,
+          }}
+          onMouseEnter={e => { e.target.style.transform = 'scale(1.04) rotate(-1.5deg)'; e.target.style.boxShadow = '0 15px 50px rgba(185,35,225,0.4)'; }}
+          onMouseLeave={e => { e.target.style.transform = ''; e.target.style.boxShadow = '0 10px 40px rgba(185,35,225,0.2)'; }}
+        />
+
+        {/* Right col */}
+        <div style={{ flex: 1, minWidth: 280, display: 'flex', flexDirection: 'column', gap: 40 }}>
+          {/* Skill pills */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+            {skills.map(s => (
+              <div key={s.name} style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                padding: 'clamp(9px,0.8vw,16px) clamp(18px,1.6vw,32px)', borderRadius: 30,
+                background: 'rgba(185,35,225,0.1)', border: '2px solid rgba(185,35,225,0.3)',
+                fontFamily: 'Manrope', fontSize: 'clamp(13px,1rem,18px)', fontWeight: 500,
+                letterSpacing: '-0.015em', transition: 'all 0.3s', cursor: 'default',
+              }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(185,35,225,0.25)'; e.currentTarget.style.borderColor = 'rgba(185,35,225,0.7)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(185,35,225,0.1)'; e.currentTarget.style.borderColor = 'rgba(185,35,225,0.3)'; e.currentTarget.style.transform = ''; }}
+              >
+                {s.icon && <img src={s.icon} alt="" style={{ width: 20, height: 20, objectFit: 'contain' }} />}
+                <span>{s.name}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Stats */}
+          <div style={{
+            display: 'flex', padding: '32px 0',
+            borderTop: '1px solid rgba(255,255,255,0.1)', borderBottom: '1px solid rgba(255,255,255,0.1)',
+          }}>
+            <div style={{ flex: 1, textAlign: 'center' }}>
+              <img src="../../assets/NUST.png" alt="NUST" style={{ width: 64, height: 64, borderRadius: '50%', objectFit: 'cover', margin: '0 auto 8px', background: 'rgba(255,255,255,0.08)' }} />
+              <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)' }}>National University of Sciences and Technology</p>
+            </div>
+            <div style={{ width: 1, background: 'rgba(255,255,255,0.2)', margin: '0 32px' }} />
+            <div style={{ flex: 1, textAlign: 'center' }}>
+              <div style={{
+                fontFamily: "'Fraunces', serif", fontSize: 'clamp(40px,4vw,72px)',
+                fontWeight: 600, background: 'linear-gradient(267deg,#da7c25,#b923e1)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+                marginBottom: 6,
+              }}>CS</div>
+              <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)' }}>Projects Completed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── MY WORK ─── */
+function MyWork({ setPage }) {
+  const projects = [
+    { id: 1, name: 'Mental Health Chatbot', desc: 'CBT-based AI chatbot using LangGraph + LangChain', color: '#1a0533' },
+    { id: 2, name: 'Zapply Autofill', desc: 'Chrome Extension for intelligent form autofill', color: '#0d1433' },
+    { id: 3, name: 'ML Classifier', desc: 'TensorFlow CNN pipeline for medical imaging', color: '#12200d' },
+  ];
+
+  return (
+    <section id="work" style={{
+      display: 'flex', flexDirection: 'column', alignItems: 'center',
+      gap: 'clamp(40px,6vw,72px)', padding: 'clamp(50px,8vw,120px) clamp(24px,5vw,80px)',
+      maxWidth: 'clamp(1200px,92vw,1600px)', margin: '0 auto', width: '100%', position: 'relative',
+    }}>
+      <div className="section-divider" style={{ width: '100%' }} />
+      <h2 style={{
+        fontFamily: "'Fraunces', serif", fontSize: 'clamp(40px,6vw,110px)',
+        fontWeight: 500, textAlign: 'center', lineHeight: 0.95, letterSpacing: '-0.04em',
+        fontVariationSettings: '"opsz" 144, "SOFT" 50',
+        background: 'linear-gradient(267deg,#da7c25 0.36%,#b923e1 100%)',
+        WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+      }}>My Latest &amp; Past Work</h2>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 36, width: '100%' }}>
+        {projects.map(p => (
+          <div key={p.id}
+            onClick={() => setPage({ name: 'project', project: p })}
+            style={{
+              height: 240, borderRadius: 15, overflow: 'hidden', position: 'relative',
+              background: `linear-gradient(135deg, ${p.color} 0%, #060610 100%)`,
+              cursor: 'pointer', boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
+              transition: 'all 0.4s cubic-bezier(0.4,0,0.2,1)', border: '1px solid rgba(185,35,225,0.12)',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.04) translateY(-8px)'; e.currentTarget.style.boxShadow = '0 16px 36px rgba(185,35,225,0.4)'; e.currentTarget.querySelector('.overlay').style.transform = 'translateY(0)'; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 15px rgba(0,0,0,0.3)'; e.currentTarget.querySelector('.overlay').style.transform = 'translateY(100%)'; }}
+          >
+            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0.3 }}>
+              <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'rgba(185,35,225,0.3)', filter: 'blur(20px)' }} />
+            </div>
+            <div className="overlay" style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0, height: '100%',
+              background: 'linear-gradient(180deg,rgba(220,38,38,0) 0%,rgba(220,38,38,0.3) 50%,rgba(220,38,38,0.95) 100%)',
+              transform: 'translateY(100%)', transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
+              display: 'flex', alignItems: 'flex-end', borderRadius: '0 0 15px 15px',
+            }}>
+              <div style={{ padding: '20px 18px' }}>
+                <h3 style={{ fontFamily: "'Fraunces',serif", fontSize: 18, fontWeight: 600, marginBottom: 6 }}>{p.name}</h3>
+                <p style={{ fontFamily: 'Manrope', fontSize: 13, color: 'rgba(255,255,255,0.9)', lineHeight: 1.5 }}>{p.desc}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <button
+        onClick={() => setPage({ name: 'projects' })}
+        style={{
+          borderRadius: 50, border: '2px solid white', padding: 'clamp(14px,1.2vw,22px) clamp(36px,3vw,58px)',
+          display: 'flex', alignItems: 'center', gap: 14, fontFamily: 'Manrope',
+          fontSize: 'clamp(15px,1.1rem,22px)', fontWeight: 600, marginTop: 20,
+          background: 'transparent', color: 'white', cursor: 'pointer', letterSpacing: '-0.015em', transition: 'all 0.3s',
+        }}
+        onMouseEnter={e => { e.currentTarget.style.background = 'white'; e.currentTarget.style.color = 'black'; e.currentTarget.style.gap = '28px'; }}
+        onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'white'; e.currentTarget.style.gap = '14px'; }}
+      >
+        <span>show more</span><span style={{ animation: 'moveArrow 1.5s infinite' }}>→</span>
+      </button>
+    </section>
+  );
+}
+
+/* ─── EXPERIENCE ─── */
+const expData = [
+  {
+    date: '2025 – Present', title: 'Full Stack Engineer', company: 'Zapply',
+    desc: 'Develop and optimize autofill functionality for multiple platforms, leveraging DOM queries, selectors, and runtime scripts. Implement dynamic field detection using Mutation Observers and message passing APIs.',
+  },
+  {
+    date: '2025', title: 'Full Stack AI Intern', company: 'Psychiatrai',
+    desc: 'Developed a mental health chatbot leveraging Cognitive Behavioral Therapy principles. Engineered backend architecture using LangGraph nodes and LangChain components for context-aware interactions.',
+  },
+  {
+    date: '2025', title: 'Ai/Ml Intern', company: 'Care',
+    desc: 'Conducted comprehensive model research and selection for ML applications in healthcare. Researched and evaluated fetal CLIP model architecture for medical imaging analysis.',
+  },
+];
+
+const skillCategories = [
+  { label: 'Languages', items: [{ name: 'Python', icon: '../../assets/icons/python-96.png' }, { name: 'Java', icon: '../../assets/icons/java-96.png' }, { name: 'C++', icon: '../../assets/icons/c-96.png' }] },
+  { label: 'Frameworks', items: [{ name: 'LangChain', icon: '../../assets/icons/Langchain.svg' }, { name: 'LangGraph', icon: '../../assets/icons/Langgraph.svg' }, { name: 'TensorFlow', icon: '../../assets/icons/tensorflow-96.png' }, { name: 'CrewAI', icon: '../../assets/icons/crewai.png' }, { name: 'ReactJS', icon: '../../assets/icons/React.png' }] },
+  { label: 'Knowledge', items: [{ name: 'Regression' }, { name: 'Classification' }, { name: 'ANNs' }, { name: 'CNNs' }] },
+  { label: 'Version Control', items: [{ name: 'Git', icon: '../../assets/icons/Git.svg' }, { name: 'GitHub', icon: '../../assets/icons/Github.svg' }] },
+  { label: 'DevOps', items: [{ name: 'Docker', icon: '../../assets/icons/Docker.svg' }] },
+];
+
+function Experience() {
+  const [hoveredCard, setHoveredCard] = React.useState(null);
+
+  return (
+    <section style={{
+      padding: 'clamp(50px,8vw,120px) clamp(24px,5vw,80px)',
+      maxWidth: 'clamp(1200px,92vw,1600px)', margin: '0 auto', width: '100%',
+    }}>
+      <div className="section-divider" style={{ width: '100%', marginBottom: 'clamp(40px,6vw,80px)' }} />
+      <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }}>
+
+        {/* Skills */}
+        <div style={{ flex: 1, minWidth: 280 }}>
+          <h2 style={{
+            fontFamily: "'Fraunces', serif", fontSize: 'clamp(28px,3vw,52px)',
+            fontWeight: 600, color: 'white', marginBottom: 28,
+            textDecoration: 'underline', textDecorationColor: 'rgba(185,35,225,0.5)',
+            textUnderlineOffset: '0.7rem', textDecorationThickness: 3,
+          }}>SKILLS</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            {skillCategories.map(cat => (
+              <div key={cat.label}>
+                <h3 style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 'clamp(12px,0.9rem,16px)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.95)', marginBottom: 10 }}>{cat.label}:</h3>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                  {cat.items.map(item => (
+                    <span key={item.name} style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 7,
+                      padding: 'clamp(7px,0.6vw,12px) clamp(12px,1vw,20px)', minHeight: 44,
+                      background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.08)',
+                      borderRadius: 9, fontFamily: 'Manrope', fontSize: 'clamp(12px,0.9rem,16px)',
+                      fontWeight: 500, color: 'white', transition: 'all 0.3s',
+                    }}
+                      onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.18)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
+                      onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.07)'; e.currentTarget.style.transform = ''; }}
+                    >
+                      {item.icon && <img src={item.icon} alt="" style={{ width: 26, height: 26, objectFit: 'contain' }} />}
+                      {item.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Experience */}
+        <div style={{ flex: 1, minWidth: 280, display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <h2 style={{
+            fontFamily: "'Fraunces', serif", fontSize: 'clamp(28px,3vw,52px)',
+            fontWeight: 600, color: 'white', marginBottom: 8,
+            textDecoration: 'underline', textDecorationColor: 'rgba(218,124,37,0.5)',
+            textUnderlineOffset: '0.7rem', textDecorationThickness: 3,
+          }}>EXPERIENCE</h2>
+          {expData.map((exp, i) => (
+            <div key={i} style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+              <div style={{
+                fontFamily: 'JetBrains Mono, monospace', fontSize: 'clamp(12px,1rem,18px)', fontWeight: 700,
+                letterSpacing: '0.06em', background: 'linear-gradient(267deg,#da7c25,#b923e1)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+                minWidth: 90, paddingTop: 18, flexShrink: 0,
+              }}>{exp.date}</div>
+              <div
+                style={{
+                  flex: 1, borderRadius: 28, background: 'rgb(4,7,29)',
+                  border: `1px solid ${hoveredCard === i ? 'rgba(185,35,225,0.5)' : 'rgba(185,35,225,0.18)'}`,
+                  padding: '18px 20px', transition: 'all 0.3s', cursor: 'default',
+                  boxShadow: hoveredCard === i ? '0 8px 30px rgba(185,35,225,0.2)' : 'none',
+                }}
+                onMouseEnter={() => setHoveredCard(i)}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                <h3 style={{ fontFamily: "'Fraunces',serif", fontSize: 'clamp(14px,1.2rem,22px)', fontWeight: 600, color: 'white', marginBottom: 4 }}>{exp.title}</h3>
+                <div style={{ fontFamily: 'Manrope', fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: hoveredCard === i ? 10 : 0, transition: 'margin 0.3s' }}>{exp.company}</div>
+                <p style={{
+                  fontFamily: 'Manrope', fontSize: 13, lineHeight: 1.65, color: 'rgba(255,255,255,0.82)',
+                  maxHeight: hoveredCard === i ? 200 : 0, overflow: 'hidden',
+                  opacity: hoveredCard === i ? 1 : 0, transition: 'max-height 0.4s, opacity 0.3s',
+                }}>{exp.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── CONTACT ─── */
+function Contact() {
+  return (
+    <section id="contact" style={{
+      padding: 'clamp(50px,8vw,120px) clamp(24px,5vw,80px)',
+      maxWidth: 'clamp(1200px,92vw,1600px)', margin: '0 auto', width: '100%',
+      display: 'flex', flexDirection: 'column', gap: 'clamp(36px,5vw,64px)',
+    }}>
+      <div className="section-divider" style={{ width: '100%' }} />
+      <h2 style={{
+        fontFamily: "'Fraunces', serif", fontSize: 'clamp(44px,5vw,120px)',
+        fontWeight: 500, textAlign: 'center', lineHeight: 0.95, letterSpacing: '-0.04em',
+        fontVariationSettings: '"opsz" 144, "SOFT" 50',
+        background: 'linear-gradient(267deg,#da7c25 0.36%,#b923e1 100%)',
+        WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+      }}>Get in touch</h2>
+
+      <div style={{ display: 'flex', gap: 'clamp(36px,4vw,72px)', flexWrap: 'wrap' }}>
+        {/* Left */}
+        <div style={{ flex: 1, minWidth: 240 }}>
+          <h3 style={{
+            fontFamily: "'Fraunces', serif", fontSize: 'clamp(28px,3vw,64px)', fontWeight: 600,
+            letterSpacing: '-0.025em', marginBottom: 16,
+            background: 'linear-gradient(267deg,#da7c25,#b923e1)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+          }}>Lets Talk</h3>
+          <p style={{ fontFamily: 'Manrope', fontSize: 'clamp(14px,1rem,22px)', lineHeight: 1.75, color: 'rgba(255,255,255,0.85)', marginBottom: 28 }}>
+            I am always open to discussing product design work or partnerships.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            {[
+              { icon: '✉', text: 'sh5suhaib.pk@gmail.com' },
+              { icon: '✆', text: '+92 3250368509' },
+              { icon: '⌖', text: 'PK, Islamabad' },
+            ].map((d, i) => (
+              <div key={i} style={{
+                display: 'flex', alignItems: 'center', gap: 16,
+                padding: 'clamp(12px,1vw,20px) clamp(16px,1.4vw,28px)', borderRadius: 12,
+                background: 'rgba(185,35,225,0.05)', border: '1px solid rgba(185,35,225,0.2)',
+                transition: 'all 0.3s',
+              }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(185,35,225,0.15)'; e.currentTarget.style.borderColor = 'rgba(185,35,225,0.5)'; e.currentTarget.style.transform = 'translateX(6px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(185,35,225,0.05)'; e.currentTarget.style.borderColor = 'rgba(185,35,225,0.2)'; e.currentTarget.style.transform = ''; }}
+              >
+                <span style={{ fontSize: 20 }}>{d.icon}</span>
+                <span style={{ fontFamily: 'Manrope', fontSize: 'clamp(13px,1rem,20px)', fontWeight: 500 }}>{d.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right */}
+        <div style={{ flex: 1, minWidth: 240 }}>
+          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 14 }}>Contact section integration coming soon.</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            {['Your Name', 'Your Email'].map((ph, i) => (
+              <input key={i} placeholder={ph} disabled style={{
+                padding: 'clamp(12px,1vw,22px) clamp(16px,1.4vw,28px)', borderRadius: 12,
+                border: '2px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)',
+                color: 'white', fontFamily: 'Manrope', fontSize: 'clamp(13px,1rem,18px)',
+                outline: 'none', opacity: 0.6,
+              }} />
+            ))}
+            <textarea placeholder="Your Message" disabled rows={4} style={{
+              padding: 'clamp(12px,1vw,22px) clamp(16px,1.4vw,28px)', borderRadius: 12,
+              border: '2px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.05)',
+              color: 'white', fontFamily: 'Manrope', fontSize: 'clamp(13px,1rem,18px)',
+              outline: 'none', resize: 'vertical', opacity: 0.6,
+            }} />
+            <button disabled style={{
+              padding: 'clamp(14px,1.2vw,22px) clamp(36px,3vw,56px)', borderRadius: 50,
+              background: 'linear-gradient(267deg,#da7c25 0.36%,#b923e1 100%)',
+              fontFamily: 'Manrope', fontSize: 'clamp(14px,1.1rem,20px)', fontWeight: 600,
+              color: 'white', border: 'none', cursor: 'not-allowed', alignSelf: 'flex-start',
+              opacity: 0.6, boxShadow: '0 4px 15px rgba(185,35,225,0.3)',
+            }}>Send Message</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── FOOTER ─── */
+function Footer({ setPage }) {
+  const links = ['Home', 'About', 'Portfolio', 'Contact'];
+  return (
+    <footer style={{
+      padding: 'clamp(36px,5vw,72px) clamp(24px,5vw,80px)',
+      borderTop: '1px solid rgba(255,255,255,0.1)',
+      background: 'linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.8) 100%)',
+      marginTop: 'clamp(40px,6vw,100px)', position: 'relative',
+    }}>
+      <div style={{
+        position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)',
+        width: 200, height: 1,
+        background: 'linear-gradient(90deg,transparent,rgba(185,35,225,0.5),transparent)',
+      }} />
+      <div style={{
+        display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
+        maxWidth: 'clamp(1200px,92vw,1600px)', margin: '0 auto', gap: 40, flexWrap: 'wrap',
+      }}>
+        <div>
+          <h3 style={{
+            fontFamily: "'Fraunces',serif", fontSize: 'clamp(24px,2vw,52px)', fontWeight: 600,
+            letterSpacing: '-0.025em', marginBottom: 10,
+            background: 'linear-gradient(267deg,#da7c25,#b923e1)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+          }}>Portfolio</h3>
+          <p style={{ fontFamily: 'Manrope', fontSize: 'clamp(13px,0.9rem,22px)', color: 'rgba(255,255,255,0.7)' }}>Software Engineer based in Pakistan</p>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24, flex: 1, minWidth: 220 }}>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 'clamp(16px,2.5vw,48px)', flexWrap: 'wrap' }}>
+            {links.map(l => (
+              <a key={l} href={`#${l.toLowerCase()}`} style={{
+                fontFamily: 'Manrope', fontSize: 'clamp(13px,1rem,24px)', fontWeight: 500,
+                color: 'white', textDecoration: 'none', transition: 'color 0.3s',
+              }}
+                onMouseEnter={e => e.target.style.color = '#b923e1'}
+                onMouseLeave={e => e.target.style.color = 'white'}
+              >{l}</a>
+            ))}
+          </div>
+          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', textAlign: 'right' }}>
+            &copy; {new Date().getFullYear()} All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ─── PROJECTS PAGE ─── */
+function ProjectsPage({ setPage }) {
+  const all = [
+    { id: 1, name: 'Mental Health Chatbot', desc: 'CBT-based AI chatbot using LangGraph + LangChain with React frontend', color: '#1a0533', tags: ['LangGraph', 'React', 'Python'] },
+    { id: 2, name: 'Zapply Autofill', desc: 'Chrome Extension for intelligent multi-platform form autofill using DOM mutation observers', color: '#0d1433', tags: ['JavaScript', 'Chrome API', 'DOM'] },
+    { id: 3, name: 'ML Classifier', desc: 'TensorFlow CNN pipeline for medical imaging classification', color: '#12200d', tags: ['TensorFlow', 'Python', 'CNN'] },
+    { id: 4, name: 'Portfolio Site', desc: 'This portfolio — React 19 + Vite + Framer Motion', color: '#1c1a03', tags: ['React', 'Framer Motion', 'Vite'] },
+    { id: 5, name: 'Agent Framework', desc: 'Multi-agent system using CrewAI for research automation', color: '#200d1a', tags: ['CrewAI', 'Python', 'LangChain'] },
+    { id: 6, name: 'Fetal CLIP Research', desc: 'Model research and evaluation for fetal imaging applications', color: '#0d1520', tags: ['CLIP', 'PyTorch', 'Research'] },
+  ];
+  return (
+    <div style={{ minHeight: '100vh' }}>
+      <div style={{ padding: 'clamp(50px,8vw,100px) clamp(24px,5vw,80px)', maxWidth: 'clamp(1200px,92vw,1600px)', margin: '0 auto' }}>
+        <button onClick={() => setPage({ name: 'home' })} style={{ fontFamily: 'Manrope', fontSize: 14, color: 'rgba(255,255,255,0.6)', background: 'none', border: 'none', cursor: 'pointer', marginBottom: 36, display: 'flex', alignItems: 'center', gap: 8, transition: 'color 0.3s' }}
+          onMouseEnter={e => e.currentTarget.style.color = '#b923e1'}
+          onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.6)'}
+        >← Back to Portfolio</button>
+        <h1 style={{ fontFamily: "'Fraunces',serif", fontSize: 'clamp(36px,5vw,80px)', fontWeight: 500, letterSpacing: '-0.035em', background: 'linear-gradient(267deg,#da7c25,#b923e1)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', marginBottom: 48 }}>All Projects</h1>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: 28 }}>
+          {all.map(p => (
+            <div key={p.id} onClick={() => setPage({ name: 'project', project: p })} style={{
+              borderRadius: 20, background: `linear-gradient(135deg,${p.color} 0%,#060610 100%)`,
+              border: '1px solid rgba(185,35,225,0.15)', padding: '28px 24px',
+              cursor: 'pointer', transition: 'all 0.3s',
+            }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.borderColor = 'rgba(185,35,225,0.5)'; e.currentTarget.style.boxShadow = '0 12px 28px rgba(185,35,225,0.25)'; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.borderColor = 'rgba(185,35,225,0.15)'; e.currentTarget.style.boxShadow = ''; }}
+            >
+              <h3 style={{ fontFamily: "'Fraunces',serif", fontSize: 20, fontWeight: 600, marginBottom: 10 }}>{p.name}</h3>
+              <p style={{ fontFamily: 'Manrope', fontSize: 13, color: 'rgba(255,255,255,0.75)', lineHeight: 1.6, marginBottom: 16 }}>{p.desc}</p>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                {p.tags.map(t => <span key={t} style={{ padding: '4px 10px', borderRadius: 20, background: 'rgba(185,35,225,0.15)', border: '1px solid rgba(185,35,225,0.3)', fontFamily: 'Manrope', fontSize: 11, fontWeight: 500 }}>{t}</span>)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── PROJECT DETAIL PAGE ─── */
+function ProjectDetail({ project, setPage }) {
+  return (
+    <div style={{ minHeight: '100vh', padding: 'clamp(50px,8vw,100px) clamp(24px,5vw,80px)', maxWidth: 'clamp(1200px,92vw,1600px)', margin: '0 auto' }}>
+      <button onClick={() => setPage({ name: 'projects' })} style={{ fontFamily: 'Manrope', fontSize: 14, color: 'rgba(255,255,255,0.6)', background: 'none', border: 'none', cursor: 'pointer', marginBottom: 36, display: 'flex', alignItems: 'center', gap: 8 }}
+        onMouseEnter={e => e.currentTarget.style.color = '#b923e1'}
+        onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.6)'}
+      >← All Projects</button>
+      <div style={{ borderRadius: 28, background: `linear-gradient(135deg,${project.color} 0%,#060610 100%)`, border: '1px solid rgba(185,35,225,0.2)', padding: 'clamp(36px,4vw,64px)', marginBottom: 32 }}>
+        <h1 style={{ fontFamily: "'Fraunces',serif", fontSize: 'clamp(28px,4vw,64px)', fontWeight: 600, marginBottom: 16 }}>{project.name}</h1>
+        <p style={{ fontFamily: 'Manrope', fontSize: 'clamp(14px,1rem,22px)', color: 'rgba(255,255,255,0.8)', lineHeight: 1.75, maxWidth: 720 }}>{project.desc}</p>
+        {project.tags && (
+          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 24 }}>
+            {project.tags.map(t => <span key={t} style={{ padding: '6px 14px', borderRadius: 20, background: 'rgba(185,35,225,0.15)', border: '1px solid rgba(185,35,225,0.4)', fontFamily: 'Manrope', fontSize: 13, fontWeight: 500 }}>{t}</span>)}
+          </div>
+        )}
+      </div>
+      <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)' }}>Full project details coming soon — source: github.com/shaheer-suhaib/portfolio</p>
+    </div>
+  );
+}
+
+/* ─── APP SHELL ─── */
+function App() {
+  const [page, setPage] = React.useState({ name: 'home' });
+  const [activeSection, setActiveSection] = React.useState('home');
+
+  // Scroll progress
+  React.useEffect(() => {
+    const onScroll = () => {
+      const el = document.getElementById('scrollBar');
+      if (!el) return;
+      const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      el.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Custom cursor
+  React.useEffect(() => {
+    const cursor = document.getElementById('cursor');
+    if (!cursor) return;
+    const move = e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; };
+    window.addEventListener('mousemove', move);
+    return () => window.removeEventListener('mousemove', move);
+  }, []);
+
+  // IntersectionObserver for nav active state
+  React.useEffect(() => {
+    if (page.name !== 'home') return;
+    const ids = ['home', 'about', 'work', 'contact'];
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) setActiveSection(e.target.id); });
+    }, { threshold: 0.3 });
+    ids.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+    return () => obs.disconnect();
+  }, [page.name]);
+
+  if (page.name === 'projects') {
+    return (
+      <>
+        <Nav activeSection="portfolio" setActiveSection={() => {}} />
+        <ProjectsPage setPage={setPage} />
+      </>
+    );
+  }
+  if (page.name === 'project') {
+    return (
+      <>
+        <Nav activeSection="portfolio" setActiveSection={() => {}} />
+        <ProjectDetail project={page.project} setPage={setPage} />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Nav activeSection={activeSection} setActiveSection={setActiveSection} />
+      <main>
+        <Hero />
+        <About />
+        <MyWork setPage={setPage} />
+        <Experience />
+        <Contact />
+      </main>
+      <Footer setPage={setPage} />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+<script>
+(function() {
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles;
+  let mouse = { x: -9999, y: -9999 };
+
+  const PARTICLE_COUNT = 72;
+  const MAX_DIST = 140;
+  const MOUSE_RADIUS = 120;
+  const MOUSE_FORCE = 0.012;
+  const COLORS = [
+    'rgba(185,35,225,',
+    'rgba(218,124,37,',
+    'rgba(200,80,240,',
+  ];
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function randBetween(a, b) { return a + Math.random() * (b - a); }
+
+  function makeParticle() {
+    const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    return {
+      x: randBetween(0, W),
+      y: randBetween(0, H),
+      vx: randBetween(-0.28, 0.28),
+      vy: randBetween(-0.28, 0.28),
+      baseVx: 0, baseVy: 0,
+      r: randBetween(1.2, 2.6),
+      color,
+      alpha: randBetween(0.35, 0.75),
+    };
+  }
+
+  function init() {
+    resize();
+    particles = Array.from({ length: PARTICLE_COUNT }, p => {
+      const part = makeParticle();
+      part.baseVx = part.vx;
+      part.baseVy = part.vy;
+      return part;
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const a = particles[i], b = particles[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_DIST) {
+          const opacity = (1 - dist / MAX_DIST) * 0.18;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(185,35,225,${opacity})`;
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+      }
+    }
+
+    for (const p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color + p.alpha + ')';
+      ctx.fill();
+    }
+  }
+
+  function update() {
+    for (const p of particles) {
+      // Mouse repulsion
+      const dx = p.x - mouse.x;
+      const dy = p.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < MOUSE_RADIUS && dist > 0) {
+        const force = (1 - dist / MOUSE_RADIUS) * MOUSE_FORCE;
+        const angle = Math.atan2(dy, dx);
+        p.vx += Math.cos(angle) * force * 60;
+        p.vy += Math.sin(angle) * force * 60;
+      }
+
+      // Dampen back toward base velocity
+      p.vx += (p.baseVx - p.vx) * 0.04;
+      p.vy += (p.baseVy - p.vy) * 0.04;
+
+      // Clamp speed
+      const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+      const maxSpeed = 3.5;
+      if (speed > maxSpeed) {
+        p.vx = (p.vx / speed) * maxSpeed;
+        p.vy = (p.vy / speed) * maxSpeed;
+      }
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+    }
+  }
+
+  function loop() {
+    update();
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('resize', () => {
+    resize();
+    for (const p of particles) {
+      if (p.x > W) p.x = W;
+      if (p.y > H) p.y = H;
+    }
+  });
+
+  window.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  window.addEventListener('mouseleave', () => {
+    mouse.x = -9999;
+    mouse.y = -9999;
+  });
+
+  init();
+  loop();
+})();
+</script>
+</body>
+</html>
