@@ -56,7 +56,7 @@ const Contact = () => {
 
           <div className="contact-details">
             {[
-              { icon: "mail", text: "sh5suhaib.pk@gmail.com" },
+              { icon: "mail", text: "shaheersuhaib.tech@gmail.com" },
               { icon: "phone", text: "+92 3250368509" },
               { icon: "location", text: "PK, Islamabad" },
             ].map((detail, i) => (
